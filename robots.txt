@@ -1,0 +1,4 @@
+User-agent: *
+Disallow: /go/
+
+Sitemap: https://fundedledger.github.io/sitemap.xml
