@@ -181,6 +181,15 @@ p { margin: 0 0 16px; }
 }
 .author-stats span { font-size: 13px; color: var(--muted); }
 
+.proof { margin: 20px 0 24px; }
+.proof-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 10px; }
+@media (max-width: 640px) { .proof-grid { grid-template-columns: 1fr 1fr; } }
+.proof-grid a { display: block; border-radius: 10px; overflow: hidden; border: 1px solid var(--border); transition: transform .15s, border-color .15s; }
+.proof-grid a:hover { transform: translateY(-2px); border-color: var(--accent); }
+.proof-grid img { display: block; width: 100%; height: auto; }
+.proof figcaption { font-size: 13.5px; color: var(--muted); margin-top: 10px; }
+.proof figcaption strong { color: var(--accent); font-family: var(--mono); }
+
 .verdict {
   background: linear-gradient(180deg, var(--surface), var(--surface-2));
   border: 1px solid var(--border); border-left: 4px solid var(--accent);
