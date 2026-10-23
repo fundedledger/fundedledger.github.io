@@ -1,0 +1,171 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Prop Firm Finder: Which Prop Firm Is Right for You? (2026 Quiz) | Funded Ledger</title>
+<meta name="description" content="Answer 5 quick questions and get matched to the prop firms that fit how you trade: futures or CFD, budget, drawdown, TradingView and bots. Built by a trader with $40K+ in payouts.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=JetBrains+Mono:wght@500;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="style.css">
+<style>
+  .quiz { margin: 24px 0; }
+  .q { background: var(--surface); border: 1px solid var(--border); border-radius: var(--radius); padding: 18px 20px; margin: 14px 0; }
+  .q h3 { margin: 0 0 12px; font-size: 1.05rem; }
+  .q h3 span { font-family: var(--mono); color: var(--accent); margin-right: 8px; }
+  .opts { display: flex; flex-wrap: wrap; gap: 8px; }
+  .opts label {
+    cursor: pointer; font-size: 15px; font-weight: 550; color: var(--text-2);
+    background: var(--surface-2); border: 1px solid var(--border); border-radius: 10px; padding: 9px 14px;
+  }
+  .opts input { position: absolute; opacity: 0; pointer-events: none; }
+  .opts input:checked + span { color: var(--text); }
+  .opts label:has(input:checked) { border-color: var(--accent); background: var(--accent-soft); color: var(--text); }
+  .opts label:has(input:focus-visible) { outline: 2px solid var(--accent); outline-offset: 2px; }
+  #results { scroll-margin-top: 90px; }
+  .match .score { font-family: var(--mono); font-size: 12px; color: var(--muted); }
+  .match ul { margin: 8px 0 0; padding-left: 18px; font-size: 14.5px; color: var(--text-2); }
+  .badge-paid { color: var(--good); }
+</style>
+</head>
+<body>
+<header class="site"><div class="wrap">
+  <a class="logo" href="index.html">Funded Ledger</a>
+  <nav>
+    <a href="index.html">Best prop firms</a>
+    <a href="compare/index.html">Reviews &amp; comparisons</a>
+    <a href="deals.html">Deals</a>
+    <a href="guides/index.html">Guides</a>
+  </nav>
+</div></header>
+
+<main><div class="wrap">
+  <section class="hero">
+    <span class="eyebrow">Tool · 30 seconds</span>
+    <h1>Prop Firm Finder</h1>
+    <p class="lede">Answer five questions and get the three prop firms that best fit how you trade. The matching uses the same rules I use after 50+ evaluations: the right drawdown type first, then cost, payout record and tools.</p>
+  </section>
+
+  <p class="disclosure">Disclosure: result buttons are affiliate links. If you buy through them I may earn a commission, at no extra cost to you. The matching itself doesn't favor firms that pay me.</p>
+
+  <form class="quiz" id="quiz">
+    <div class="q"><h3><span>1</span>What do you trade?</h3><div class="opts">
+      <label><input type="radio" name="market" value="futures" checked><span>Futures (NQ, ES, gold futures)</span></label>
+      <label><input type="radio" name="market" value="cfd"><span>Forex, indices &amp; gold (CFDs)</span></label>
+      <label><input type="radio" name="market" value="crypto"><span>Crypto</span></label>
+    </div></div>
+    <div class="q"><h3><span>2</span>What matters most to you?</h3><div class="opts">
+      <label><input type="radio" name="priority" value="proven" checked><span>Proven payouts</span></label>
+      <label><input type="radio" name="priority" value="cost"><span>Lowest cost</span></label>
+      <label><input type="radio" name="priority" value="speed"><span>Pass and get paid fast</span></label>
+      <label><input type="radio" name="priority" value="room"><span>Most forgiving drawdown</span></label>
+    </div></div>
+    <div class="q"><h3><span>3</span>How experienced are you with prop firms?</h3><div class="opts">
+      <label><input type="radio" name="exp" value="new" checked><span>New to prop firms</span></label>
+      <label><input type="radio" name="exp" value="exp"><span>I've done evaluations before</span></label>
+    </div></div>
+    <div class="q"><h3><span>4</span>Do you want to trade from TradingView?</h3><div class="opts">
+      <label><input type="radio" name="tv" value="yes" checked><span>Yes</span></label>
+      <label><input type="radio" name="tv" value="no"><span>Doesn't matter</span></label>
+    </div></div>
+    <div class="q"><h3><span>5</span>Will you run a trading bot or EA?</h3><div class="opts">
+      <label><input type="radio" name="bots" value="no" checked><span>No, I trade manually</span></label>
+      <label><input type="radio" name="bots" value="yes"><span>Yes</span></label>
+    </div></div>
+    <p><button class="btn" type="submit" style="border:0;cursor:pointer;font:inherit;font-weight:700">Show my matches</button></p>
+  </form>
+
+  <section id="results" hidden>
+    <h2>Your top matches</h2>
+    <div class="picks wide" id="matches"></div>
+    <p class="meta">Matches are based on rules reported in October 2026. Always confirm a firm's current rules before buying. Want the full picture? See the <a href="index.html">top 10 futures and CFD rankings</a> or <a href="deals.html">current deals</a>.</p>
+  </section>
+
+  <div class="risk"><strong>Risk warning:</strong> most traders fail prop firm evaluations, and fees are usually not refunded. A match isn't a recommendation to buy. Nothing here is financial advice.</div>
+</div></main>
+
+<footer class="site"><div class="wrap">
+  <div class="logo">Funded Ledger</div>
+  <p>Funded Ledger is reader-supported. Some links are affiliate links. Trading futures, forex and CFDs carries a high risk of loss. Past results, including mine, do not guarantee future results. Nothing here is financial advice.</p>
+</div></footer>
+
+<script>
+// Firm data: only facts already published on this site. tags drive the scoring.
+const FIRMS = [
+  // futures
+  {id:"lucid", name:"Lucid Trading", m:"futures", go:"go/lucid.html", review:"reviews/lucid-trading.html", paid:true,
+   tags:["eod","tv","bots","fast","cheap","noact","tightdd"], why:["Paid me a $2,000 payout in under a minute","Passes in 1–2 days; end-of-day drawdown, never intraday","No activation fee; trades from TradingView via Tradovate"], watch:"Smaller, trailing drawdown; $2,000 cap per Flex payout"},
+  {id:"fundednext-f", name:"FundedNext Futures", m:"futures", go:"go/fundednext.html", review:"reviews/fundednext.html",
+   tags:["eod","tv","bots","cheap"], why:["Flex 50K reported at ~$49 on promotion","End-of-day drawdown on every plan; up to 95% split","I trade it myself"], watch:"Hasn't paid me yet; public payout reports stopped after Feb 2026"},
+  {id:"topstep", name:"Topstep", m:"futures", go:"go/topstep.html", review:"reviews/topstep.html",
+   tags:["eod","structure","rated"], why:["End-of-day trailing only, so no intraday trap","No deadline to pass; clear rules since 2012"], watch:"Monthly fee plus $149 activation; limited TradingView support"},
+  {id:"apex", name:"Apex Trader Funding", m:"futures", go:"go/apex.html", review:"reviews/apex-trader-funding.html",
+   tags:["eod-choice","tv","fast","nobots"], why:["No consistency rule or minimum days to pass","Coupons often cut the price sharply"], watch:"Pick end-of-day, never intraday; 50% payout rule; bots banned"},
+  {id:"mff", name:"My Funded Futures", m:"futures", go:"go/myfundedfutures.html",
+   tags:["eod","tv","rated","cheap"], why:["Highest-rated futures firm (4.9 from ~17,500 reviews)","One-time fee; 90/10 split"], watch:"The Rapid plan's funded account uses intraday drawdown"},
+  {id:"tradeify", name:"Tradeify", m:"futures", go:"go/tradeify.html",
+   tags:["eod","tv","fast"], why:["Growth plan can pass in one day","Bigger payout caps than most"], watch:"Plans differ a lot; bots need proof you wrote the code"},
+  {id:"alpha", name:"Alpha Futures", m:"futures", go:"go/alphafutures.html",
+   tags:["eod","tv","rated","fast"], why:["4.9 rating; end-of-day drawdown","Zero plan has no evaluation consistency rule"], watch:"Smaller review base (~3,600)"},
+  {id:"bulenox", name:"Bulenox", m:"futures", go:"go/bulenox.html",
+   tags:["eod","bots","cheap","rated"], why:["One of the most bot-friendly futures firms","More drawdown room than most ($2,500 on 50K)"], watch:"Fewer independent reviews; no shared or sold bots"},
+  {id:"tpt", name:"Take Profit Trader", m:"futures", go:"go/takeprofittrader.html",
+   tags:["eod","tv"], why:["End-of-day drawdown; withdrawals from day one once funded"], watch:"50% consistency rule on evaluations since Aug 2026"},
+  // CFD
+  {id:"ftmo", name:"FTMO", m:"cfd", go:"go/ftmo.html", review:"reviews/ftmo.html", paid:true,
+   tags:["static","rated","structure","bots","pricey"], why:["Paid me $26,138 across 4 payouts in 2026","2-Step has a static 10% max loss","2-Step fee refunded with your first payout"], watch:"Daily loss counts open trades; 80% starting split"},
+  {id:"fundednext-c", name:"FundedNext (Stellar)", m:"cfd", go:"go/fundednext.html", review:"reviews/fundednext.html",
+   tags:["static","cheap","bots"], why:["8% first target, lower than FTMO's 10%","Static drawdown on every Stellar plan; usually cheaper than FTMO"], watch:"Hasn't paid me yet; payout reports stopped after Feb 2026"},
+  {id:"the5ers", name:"The5ers", m:"cfd", go:"go/the5ers.html",
+   tags:["rated","cheap","bots"], why:["4.8 rating; forgiving for swing traders","20K Bootcamp from ~$22"], watch:"Split can start at 50% before scaling"},
+  {id:"fxify", name:"FXIFY", m:"cfd", go:"go/fxify.html",
+   tags:["static"], why:["Two-phase program has a static 10% max loss","Up to 90% split (95% with scaling)"], watch:"One-phase 6% trailing drawdown is tight"},
+  {id:"fundingpips", name:"FundingPips", m:"cfd", go:"go/fundingpips.html",
+   tags:["cheap"], why:["Huge user base; no minimum hold time reported"], watch:"The '100%' split has conditions"},
+  {id:"maven", name:"Maven Trading", m:"cfd", go:"go/maven.html",
+   tags:["cheap"], why:["Cheapest entry: 5K accounts from ~$17"], watch:"Little independent coverage; small accounts pay little"},
+  // crypto
+  {id:"cft", name:"Crypto Fund Trader", m:"crypto", go:"go/cryptofundtrader.html", review:"reviews/cryptofundtrader.html", paid:true,
+   tags:["static","cheap"], why:["Paid me ~$15,000, no denials, 2–3 days per payout","2-Step has a static 10% max loss","Crypto, forex and gold in one firm"], watch:"Swiss regulator warning; Trustpilot rating removed"},
+];
+
+function score(f, a) {
+  let s = 0; const t = new Set(f.tags);
+  // drawdown first: the rule that decides most accounts
+  if (t.has("eod") || t.has("static")) s += 3;
+  if (t.has("eod-choice")) s += 1;
+  if (a.priority === "proven") { if (f.paid) s += 5; if (t.has("rated")) s += 2; }
+  if (a.priority === "cost") { if (t.has("cheap")) s += 4; if (t.has("noact")) s += 1; if (t.has("pricey")) s -= 3; }
+  if (a.priority === "speed") { if (t.has("fast")) s += 4; if (f.id === "lucid") s += 2; }
+  if (a.priority === "room") { if (t.has("static")) s += 4; if (f.id === "bulenox") s += 4; if (t.has("tightdd")) s -= 4; }
+  if (a.exp === "new") { if (t.has("structure")) s += 1; }
+  if (a.tv === "yes") { if (t.has("tv")) s += 2; if (f.id === "topstep") s -= 2; }
+  if (a.bots === "yes") { if (t.has("bots")) s += 3; if (t.has("nobots")) s -= 10; }
+  if (f.paid) s += 1;
+  return s;
+}
+
+function esc(x){ return x.replace(/[&<>"]/g, c => ({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;"}[c])); }
+
+document.getElementById("quiz").addEventListener("submit", e => {
+  e.preventDefault();
+  const fd = new FormData(e.target); const a = Object.fromEntries(fd.entries());
+  const ranked = FIRMS.filter(f => f.m === a.market)
+    .map(f => ({f, s: score(f, a)}))
+    .sort((x, y) => y.s - x.s).slice(0, 3);
+  document.getElementById("matches").innerHTML = ranked.map(({f}, i) => `
+    <article class="pick match">
+      <span class="award">${i === 0 ? "Best match" : "Match #" + (i + 1)}${f.paid ? ' · <span class="badge-paid">paid me</span>' : ""}</span>
+      <h3>${esc(f.name)}</h3>
+      <ul>${f.why.map(w => `<li>${esc(w)}</li>`).join("")}</ul>
+      <p class="catch"><strong>Watch out:</strong> ${esc(f.watch)}</p>
+      <div class="actions"><a class="btn sm" href="${f.go}" rel="sponsored nofollow">Visit ${esc(f.name.split(" (")[0])}</a>${f.review ? `<a class="btn sm ghost" href="${f.review}">Read review</a>` : ""}</div>
+    </article>`).join("");
+  if (a.market === "crypto") document.getElementById("matches").insertAdjacentHTML("beforeend",
+    `<p class="meta" style="grid-column:1/-1">Few prop firms focus on crypto, and Crypto Fund Trader is the only crypto firm that has paid me. If you also trade forex or gold, run the finder again with "Forex, indices &amp; gold".</p>`);
+  const r = document.getElementById("results"); r.hidden = false; r.scrollIntoView({behavior: "smooth"});
+});
+</script>
+</body>
+</html>
