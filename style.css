@@ -163,6 +163,8 @@ p { margin: 0 0 16px; }
 .proof-grid a { display: block; border-radius: 10px; overflow: hidden; border: 1px solid var(--border); transition: transform .15s, border-color .15s; }
 .proof-grid a:hover { transform: translateY(-2px); border-color: var(--accent); }
 .proof-grid img { display: block; width: 100%; height: auto; }
+.proof-grid.three { grid-template-columns: repeat(3, 1fr); }
+@media (max-width: 640px) { .proof-grid.three { grid-template-columns: 1fr 1fr; } }
 .proof-grid.single { grid-template-columns: minmax(0, 420px); }
 .proof figcaption { font-size: 13.5px; color: var(--muted); margin-top: 10px; }
 .proof figcaption strong { color: var(--accent); font-family: var(--mono); }
