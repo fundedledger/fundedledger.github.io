@@ -47,7 +47,7 @@
     <p class="lede">Answer five questions and get the three prop firms that best fit how you trade. The matching uses the same rules I use after 50+ evaluations: the right drawdown type first, then cost, payout record and tools.</p>
   </section>
 
-  <p class="disclosure">Disclosure: result buttons are affiliate links. If you buy through them I may earn a commission, at no extra cost to you. The matching itself doesn't favor firms that pay me.</p>
+  <p class="disclosure">Disclosure: result buttons are affiliate links. If you buy through them I may earn a commission, at no extra cost to you. The matching itself doesn't favor firms that pay me. I earn a commission if you use my code LEDGER.</p>
 
   <form class="quiz" id="quiz">
     <div class="q"><h3><span>1</span>What do you trade?</h3><div class="opts">
@@ -88,6 +88,7 @@
 <footer class="site"><div class="wrap">
   <div class="logo">Funded Ledger</div>
   <p>Funded Ledger is reader-supported. Some links are affiliate links. Trading futures, forex and CFDs carries a high risk of loss. Past results, including mine, do not guarantee future results. Nothing here is financial advice.</p>
+  <p>Contact: <a href="mailto:fundedledger@gmail.com">fundedledger@gmail.com</a></p>
 </div></footer>
 
 <script>
@@ -96,7 +97,7 @@ const FIRMS = [
   // futures
   {id:"lucid", name:"Lucid Trading", m:"futures", go:"go/lucid.html", review:"reviews/lucid-trading.html", paid:true,
    tags:["eod","tv","bots","fast","cheap","noact","tightdd"], why:["Paid me a $2,000 payout in under a minute","Passes in 1–2 days; end-of-day drawdown, never intraday","No activation fee; trades from TradingView via Tradovate"], watch:"Smaller, trailing drawdown; $2,000 cap per Flex payout"},
-  {id:"fundednext-f", name:"FundedNext Futures", m:"futures", go:"go/fundednext.html", review:"reviews/fundednext.html",
+  {id:"fundednext-f", name:"FundedNext Futures", m:"futures", go:"go/fundednext.html", code:true, review:"reviews/fundednext.html",
    tags:["eod","tv","bots","cheap"], why:["Flex 50K $74.99 (list $141.99), fundednext.com/futures, Oct 2026","End-of-day drawdown on every plan; up to 95% split","I trade it myself"], watch:"Hasn't paid me yet; public payout reports stopped after Feb 2026"},
   {id:"topstep", name:"Topstep", m:"futures", go:"go/topstep.html", review:"reviews/topstep.html",
    tags:["eod","structure","rated"], why:["End-of-day trailing only, so no intraday trap","No deadline to pass; clear rules since 2012"], watch:"Monthly fee plus $149 activation; limited TradingView support"},
@@ -115,7 +116,7 @@ const FIRMS = [
   // CFD
   {id:"ftmo", name:"FTMO", m:"cfd", go:"go/ftmo.html", review:"reviews/ftmo.html", paid:true,
    tags:["static","rated","structure","bots","pricey"], why:["Paid me $26,138 across 4 payouts in 2026","2-Step has a static 10% max loss","2-Step fee refunded with your first payout"], watch:"Daily loss counts open trades; 80% starting split"},
-  {id:"fundednext-c", name:"FundedNext (Stellar)", m:"cfd", go:"go/fundednext.html", review:"reviews/fundednext.html",
+  {id:"fundednext-c", name:"FundedNext (Stellar)", m:"cfd", go:"go/fundednext.html", code:true, review:"reviews/fundednext.html",
    tags:["static","cheap","bots"], why:["8% first target, lower than FTMO's 10%","Static drawdown on every Stellar plan; usually cheaper than FTMO"], watch:"Hasn't paid me yet; payout reports stopped after Feb 2026"},
   {id:"the5ers", name:"The5ers", m:"cfd", go:"go/the5ers.html",
    tags:["rated","cheap","bots"], why:["4.8 rating; forgiving for swing traders","20K Bootcamp from ~$22"], watch:"Split can start at 50% before scaling"},
@@ -160,7 +161,7 @@ document.getElementById("quiz").addEventListener("submit", e => {
       <h3>${esc(f.name)}</h3>
       <ul>${f.why.map(w => `<li>${esc(w)}</li>`).join("")}</ul>
       <p class="catch"><strong>Watch out:</strong> ${esc(f.watch)}</p>
-      <div class="actions"><a class="btn sm" href="${f.go}" rel="sponsored nofollow">Visit ${esc(f.name.split(" (")[0])}</a>${f.review ? `<a class="btn sm ghost" href="${f.review}">Read review</a>` : ""}</div>
+      <div class="actions"><a class="btn sm" href="${f.go}" rel="sponsored nofollow">Visit ${esc(f.name.split(" (")[0])}</a>${f.code ? ` <small style="color:var(--muted)">Use code LEDGER at checkout</small>` : ""} ${f.review ? `<a class="btn sm ghost" href="${f.review}">Read review</a>` : ""}</div>
     </article>`).join("");
   if (a.market === "crypto") document.getElementById("matches").insertAdjacentHTML("beforeend",
     `<p class="meta" style="grid-column:1/-1">Few prop firms focus on crypto, and Crypto Fund Trader is the only crypto firm that has paid me. If you also trade forex or gold, run the finder again with "Forex, indices &amp; gold".</p>`);
