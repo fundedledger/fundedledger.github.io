@@ -29,31 +29,7 @@
   --mono: "JetBrains Mono", ui-monospace, "SF Mono", Consolas, monospace;
 }
 
-@media (prefers-color-scheme: light) {
-  :root {
-    --bg: #f6f8fa;
-    --bg-2: #eef2f6;
-    --surface: #ffffff;
-    --surface-2: #f8fafc;
-    --border: #e1e7ee;
-    --border-strong: #cdd6e0;
-    --text: #0f1722;
-    --text-2: #3b4a5a;
-    --muted: #64748b;
-    --accent: #059669;
-    --accent-2: #0e7490;
-    --accent-ink: #ffffff;
-    --accent-soft: rgba(5, 150, 105, 0.10);
-    --good: #059669;
-    --bad: #e11d48;
-    --bad-soft: rgba(225, 29, 72, 0.07);
-    --warn: #b45309;
-    --warn-bg: #fffbeb;
-    --warn-border: #fcd34d;
-    --todo-bg: #fef3c7;
-    --shadow: 0 1px 2px rgba(15,23,34,.05), 0 8px 24px rgba(15,23,34,.06);
-  }
-}
+:root { color-scheme: dark; }
 
 * { box-sizing: border-box; }
 html { scroll-behavior: smooth; scroll-padding-top: 80px; }
