@@ -368,4 +368,5 @@ footer.site p { max-width: 760px; }
 .ad-banner a { display: block; border-radius: var(--radius); overflow: hidden; border: 1px solid var(--border); transition: border-color .15s, transform .15s; }
 .ad-banner a:hover { border-color: var(--accent); transform: translateY(-2px); }
 .ad-banner img { display: block; width: 100%; height: auto; }
+.ad-banner a { max-width: 728px; }
 .ad-label { display: block; font-size: 11.5px; font-weight: 700; letter-spacing: .06em; text-transform: uppercase; color: var(--muted); margin-bottom: 6px; }
