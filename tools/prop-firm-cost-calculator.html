@@ -1,0 +1,253 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Prop Firm Cost Calculator: How Much Does It Cost to Get Funded?</title>
+<meta name="description" content="Prop firm cost calculator: enter a pass rate and see how much it costs to get one funded account, with sourced fees and checked dates for each firm.">
+<link rel="canonical" href="https://fundedxledger.com/tools/prop-firm-cost-calculator.html">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=JetBrains+Mono:wght@500;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="../style.css?v=5">
+<style>
+.calc { background: var(--surface); border: 1px solid var(--border); border-radius: var(--radius); padding: 18px 20px; margin: 20px 0; }
+.calc-grid { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 14px 16px; }
+@media (max-width: 640px) { .calc-grid { grid-template-columns: 1fr; } }
+.calc label { display: block; font-size: 12px; font-weight: 700; letter-spacing: .05em; text-transform: uppercase; color: var(--muted); margin-bottom: 5px; }
+.calc input, .calc select { width: 100%; background: var(--bg-2); color: var(--text); border: 1px solid var(--border-strong); border-radius: 8px; padding: 10px 12px; font: inherit; font-size: 16px; }
+.calc input:focus, .calc select:focus { outline: 2px solid var(--accent); outline-offset: 1px; }
+.calc .hint { font-size: 13px; color: var(--muted); margin: 5px 0 0; }
+.calc .full { grid-column: 1 / -1; }
+.result { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 12px; margin: 20px 0; }
+@media (max-width: 640px) { .result { grid-template-columns: 1fr; } }
+.result div { background: var(--surface); border: 1px solid var(--border); border-radius: var(--radius); padding: 14px 16px; }
+.result .k { font-size: 11.5px; font-weight: 700; letter-spacing: .06em; text-transform: uppercase; color: var(--muted); }
+.result .v { font-family: "JetBrains Mono", monospace; font-size: 26px; font-weight: 700; color: var(--accent); margin-top: 4px; }
+.result .s { font-size: 13px; color: var(--text-2); margin-top: 4px; }
+.calc-error { color: var(--warn); font-weight: 600; margin: 12px 0; }
+#cmp table { min-width: 760px; }
+#cmp td.num { font-family: "JetBrains Mono", monospace; white-space: nowrap; }
+#cmp .tag { display: inline-block; font-size: 11px; font-weight: 700; padding: 1px 6px; border-radius: 4px; background: var(--accent-soft); color: var(--accent); }
+#cmp .tag.list { background: var(--surface-2); color: var(--text-2); }
+#cmp tr.sep td { background: var(--surface-2); font-weight: 650; }
+</style>
+</head>
+<body>
+<header class="site"><div class="wrap">
+  <a class="logo" href="../index.html">Funded Ledger</a>
+  <nav>
+    <a href="../index.html">Best prop firms</a>
+    <a href="../compare/index.html">Reviews &amp; comparisons</a>
+    <a href="../deals.html">Deals</a>
+    <a href="../guides/index.html">Guides</a>
+  </nav>
+</div></header>
+
+<main><div class="wrap">
+  <section class="hero">
+    <span class="eyebrow">Tool · cost</span>
+    <h1>Prop Firm Cost Calculator: How Much Does It Cost to Get Funded?</h1>
+    <p class="lede">The price on the sales page is the cost of one try. Many traders need more than one. Enter a pass rate and see the expected cost to get one funded account, firm by firm.</p>
+    <div class="byline"><span class="chip">Fees checked 23–30 October 2026</span><span class="chip">No sign-up, runs in your browser</span></div>
+  </section>
+
+  <p class="disclosure">Disclosure: some links on this page are affiliate links. If you buy through them I may earn a commission, at no extra cost to you.</p>
+  <div class="risk"><strong>Risk warning:</strong> most traders fail prop firm evaluations, and fees are usually not refunded. Only pay fees you can afford to lose. This calculator is an illustration of fee math, not a forecast of your results or income. Nothing here is financial advice.</div>
+
+  <h2 id="calculator">Calculate your expected cost</h2>
+  <form class="calc" id="calc" onsubmit="return false">
+    <div class="calc-grid">
+      <div>
+        <label for="size">Account size</label>
+        <select id="size"><option value="50">50K</option><option value="100">100K</option></select>
+      </div>
+      <div>
+        <label for="plan">Firm and plan</label>
+        <select id="plan"></select>
+      </div>
+      <div id="customWrap" hidden>
+        <label for="custom">Your fee ($ per attempt)</label>
+        <input id="custom" type="number" inputmode="decimal" min="0" step="any" placeholder="e.g. 150">
+      </div>
+      <div>
+        <label for="basis">Price to use</label>
+        <select id="basis"><option value="list">List price</option><option value="promo">Promo price (where one is shown)</option></select>
+        <p class="hint">Promos end without notice. List is the safer plan.</p>
+      </div>
+      <div>
+        <label for="pass">Your pass rate (%)</label>
+        <input id="pass" type="number" inputmode="decimal" min="1" max="100" step="any" value="33">
+        <p class="hint">Default 33%: I pass about 1 in 3 (50+ evaluations bought, 15+ passed). Many traders do worse (Earn2Trade's own page shows 8.89% passed in 2025), so try 10–20% too.</p>
+      </div>
+      <div>
+        <label for="months">Months per attempt (monthly-billed plans)</label>
+        <input id="months" type="number" inputmode="numeric" min="1" step="1" value="1">
+        <p class="hint">Only used for plans billed monthly. Slow passes cost extra months.</p>
+      </div>
+      <div>
+        <label for="reset">Reset fee, optional ($)</label>
+        <input id="reset" type="number" inputmode="decimal" min="0" step="any" placeholder="Leave blank to use the firm's">
+        <p class="hint">Applies to the plan you selected. Blank means: firm's sourced reset fee, or a full re-buy if none is sourced.</p>
+      </div>
+      <div>
+        <label for="act">Activation fee, optional ($)</label>
+        <input id="act" type="number" inputmode="decimal" min="0" step="any" placeholder="Leave blank to use the firm's">
+        <p class="hint">Paid once, when you get funded.</p>
+      </div>
+    </div>
+  </form>
+
+  <p class="calc-error" id="err" role="alert" hidden></p>
+  <div class="result" id="result" aria-live="polite">
+    <div><span class="k">Expected attempts</span><div class="v" id="rAtt">–</div><div class="s" id="rAttS"></div></div>
+    <div><span class="k">Expected cost for one funded account</span><div class="v" id="rCost">–</div><div class="s" id="rCostS"></div></div>
+    <div><span class="k">Your selection</span><div class="v" id="rFee" style="font-size:20px">–</div><div class="s" id="rFeeS"></div></div>
+  </div>
+  <p class="meta" id="rHow"></p>
+
+  <h2 id="compare">Side by side at this size, cheapest expected cost first</h2>
+  <p>Firms where we have a live link and a sourced fee. Same pass rate and price setting as above. Plans without a sourced fee are left out, not guessed.</p>
+  <div class="table-scroll" id="cmp"></div>
+  <p class="meta">"List" is the firm's regular price; "promo" is a sale price shown on the firm's site on the checked date and may be gone. Euro prices are not converted. Reset and activation fees are only counted where a source states them; a dash means no sourced reset fee, so the full price is used for each retry. Fees shown are on the checked dates, so the checkout price is the one that counts. Sources marked "firm site" are the firm's own pages; "third-party" means a comparison or review site, not confirmed by the firm.</p>
+
+  <h2 id="how">How the calculation works</h2>
+  <ol>
+    <li><strong>Expected attempts = 1 ÷ pass rate.</strong> At 33% that's about 3 attempts. At 20% it's 5.</li>
+    <li><strong>First attempt</strong> costs the full price (times the months you expect it to take, on monthly plans).</li>
+    <li><strong>Each retry</strong> costs the reset fee where the firm sells one and we have a source, otherwise a full re-buy.</li>
+    <li><strong>Activation fee</strong>, if any, is added once.</li>
+  </ol>
+  <p>It's an average, not a promise: you could pass first time or fail ten times. It does not include market data, platform or commission costs, payout fees, taxes, or any refund a firm may give back after payouts. Pass rate is also a guess about you. It depends on your edge and on how well the firm's drawdown and consistency rules fit how you trade. For more on that, see <a href="../guides/cheapest-prop-firm-challenge.html">the cheapest challenges guide</a> and <a href="../guides/trailing-vs-end-of-day-drawdown.html">trailing vs end-of-day drawdown</a>.</p>
+
+  <aside class="author">
+    <span class="eyebrow">Why I built this</span>
+    <p>I've bought 50+ evaluations and passed 15+, roughly one in three. That's why the default is 33%. Many traders do worse than that, and the cheapest sticker price is often not the cheapest way to get funded. A firm with rules you can't stick to costs more than a pricier one you can.</p>
+  </aside>
+
+  <p>Related: <a href="../deals.html">Prop firm deals and codes</a> · <a href="../guides/cheapest-prop-firm-challenge.html">Cheapest prop firm challenges</a> · <a href="../how-prop-firm-challenges-work.html">How challenges work</a></p>
+
+  <div class="risk"><strong>Risk warning:</strong> trading futures, forex and CFDs carries a high risk of loss, and most evaluation attempts fail. Past results, including mine, do not guarantee future results. This page is not financial advice.</div>
+</div></main>
+
+<footer class="site"><div class="wrap">
+  <div class="logo">Funded Ledger</div>
+  <p>Funded Ledger is reader-supported. Some links are affiliate links. Trading futures, forex and CFDs carries a high risk of loss. Past results, including mine, do not guarantee future results. Nothing here is financial advice.</p>
+  <p>Contact: <a href="mailto:fundedledger@gmail.com">fundedledger@gmail.com</a></p>
+</div></footer>
+
+<script>
+(function () {
+  // Fees come from team/research/ notes. src: "firm" = firm's own site/help centre, "3p" = third-party listing.
+  // m = billed monthly; list/promo = price per attempt (per month if m); reset/act null = no sourced figure.
+  var G = { fn: "../go/fundednext.html", af: "../go/alphafutures.html", td: "../go/tradeday.html", e2: "../go/earn2trade.html", e8: "../go/e8markets.html", fx: "../go/fxify.html", ft: "../go/ftmo.html" };
+  var D = [
+    { firm: "FundedNext Futures", plan: "Flex", size: 50, list: 141.99, promo: 74.99, reset: 82.99, act: 0, go: G.fn, code: "LEDGER", src: "firm", chk: "23 Oct 2026", note: "Watch out: sale prices change; its price grid and FAQ differ ($74.99 vs $69.99)" },
+    { firm: "FundedNext Futures", plan: "Flex", size: 100, list: 273.99, promo: 144.99, reset: null, act: 0, go: G.fn, code: "LEDGER", src: "firm", chk: "23 Oct 2026", note: "Watch out: sale prices change; its price grid and FAQ differ ($74.99 vs $69.99)" },
+    { firm: "Alpha Futures", plan: "Zero", size: 50, m: 1, list: 169, promo: null, reset: null, act: 0, go: G.af, src: "firm", chk: "30 Oct 2026", note: "Watch out: no refunds, bills monthly until you pass or cancel" },
+    { firm: "Alpha Futures", plan: "Zero", size: 100, m: 1, list: 279, promo: null, reset: 249, act: 0, go: G.af, src: "firm", chk: "28 Oct 2026", note: "Watch out: no refunds, bills monthly until you pass or cancel" },
+    { firm: "Alpha Futures", plan: "Standard", size: 50, m: 1, list: 129, promo: null, reset: 109, act: 0, go: G.af, src: "firm", chk: "28 Oct 2026", note: "Watch out: no refunds, bills monthly until you pass or cancel" },
+    { firm: "Alpha Futures", plan: "Standard", size: 100, m: 1, list: 239, promo: null, reset: 199, act: 0, go: G.af, src: "firm", chk: "28 Oct 2026", note: "Watch out: no refunds, bills monthly until you pass or cancel" },
+    { firm: "Alpha Futures", plan: "Advanced", size: 50, m: 1, list: 209, promo: null, reset: 189, act: 0, go: G.af, src: "firm", chk: "28 Oct 2026", note: "Watch out: no refunds, bills monthly until you pass or cancel" },
+    { firm: "Alpha Futures", plan: "Advanced", size: 100, m: 1, list: 349, promo: null, reset: 319, act: 0, go: G.af, src: "firm", chk: "28 Oct 2026", note: "Watch out: no refunds, bills monthly until you pass or cancel" },
+    { firm: "TradeDay", plan: "Quick Pay (end-of-day)", size: 50, m: 1, list: 175, promo: 79, reset: 79, act: 0, go: G.td, src: "firm", chk: "30 Oct 2026", note: "Reset = the promo monthly price on the card. Watch out: the \"end-of-day\" account trails intraday once funded, and the first $4,000 of profit splits 50/50" },
+    { firm: "TradeDay", plan: "Quick Pay (end-of-day)", size: 100, m: 1, list: 285, promo: 129, reset: 129, act: 0, go: G.td, src: "firm", chk: "30 Oct 2026", note: "Reset = the promo monthly price on the card. Watch out: the \"end-of-day\" account trails intraday once funded, and the first $4,000 of profit splits 50/50" },
+    { firm: "TradeDay", plan: "Fast Pass", size: 50, m: 1, list: 189, promo: 95, reset: 95, act: 0, go: G.td, src: "firm", chk: "30 Oct 2026", note: "Reset = the promo monthly price on the card. Watch out: Fast Pass funded-stage consistency and caps changed in July 2026" },
+    { firm: "TradeDay", plan: "Fast Pass", size: 100, m: 1, list: 350, promo: 175, reset: 175, act: 0, go: G.td, src: "firm", chk: "30 Oct 2026", note: "Reset = the promo monthly price on the card. Watch out: Fast Pass funded-stage consistency and caps changed in July 2026" },
+    { firm: "Earn2Trade", plan: "Gauntlet Mini", size: 50, m: 1, list: 170, promo: null, reset: null, act: 139, go: G.e2, code: "LEDGER", src: "firm", chk: "27 Oct 2026", note: "$139 activation is deducted from your first withdrawal. Watch out: a hard daily loss limit fails the evaluation outright; Earn2Trade's own page shows an 8.89% pass rate for 2025" },
+    { firm: "E8 Markets", plan: "Signature (futures)", size: 50, list: 160, promo: null, reset: null, act: 0, go: G.e8, code: "A39608C1", src: "3p", chk: "26 Oct 2026", note: "Watch out: price from a third-party listing, not confirmed by E8" },
+    { firm: "E8 Markets", plan: "Signature (futures)", size: 100, list: 280, promo: null, reset: null, act: 0, go: G.e8, code: "A39608C1", src: "3p", chk: "26 Oct 2026", note: "Watch out: price from a third-party listing, not confirmed by E8" },
+    { firm: "FXIFY", plan: "Two Phase Pro (CFD)", size: 50, list: 375, promo: null, reset: null, act: 0, go: G.fx, src: "firm", chk: "29 Oct 2026", note: "Watch out: fee reported as not refunded (third-party report)" },
+    { firm: "FXIFY", plan: "Two Phase Pro (CFD)", size: 100, list: 599, promo: null, reset: null, act: 0, go: G.fx, src: "firm", chk: "29 Oct 2026", note: "Watch out: fee reported as not refunded (third-party report)" },
+    { firm: "FTMO", plan: "2-Step (CFD)", size: 50, cur: "€", list: 345, promo: null, reset: null, act: 0, go: G.ft, src: "3p", chk: "23 Oct 2026", note: "Watch out: price from third-party listings only; official page not readable" },
+    { firm: "FTMO", plan: "2-Step (CFD)", size: 100, cur: "€", list: 540, promo: null, reset: null, act: 0, go: G.ft, src: "3p", chk: "23 Oct 2026", note: "Sale prices of €439–449 were seen once; not counted. Watch out: price from third-party listings only" }
+  ];
+
+  var $ = function (id) { return document.getElementById(id); };
+  var money = function (n, c) { return (c || "$") + n.toLocaleString("en-US", { minimumFractionDigits: 2, maximumFractionDigits: 2 }); };
+  var num = function (id) { var v = $(id).value.trim(); if (v === "") return null; var n = Number(v); return isFinite(n) && n >= 0 ? n : NaN; };
+  var esc = function (s) { return String(s).replace(/[&<>"]/g, function (c) { return { "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;" }[c]; }); };
+
+  function calc(row, pass, months, basis, ovReset, ovAct) {
+    var promoUsed = basis === "promo" && row.promo != null;
+    var fee = promoUsed ? row.promo : row.list;
+    var first = row.m ? fee * months : fee;
+    var reset = ovReset != null ? ovReset : row.reset;
+    var retry = reset != null ? reset : first;
+    var act = ovAct != null ? ovAct : (row.act || 0);
+    var att = 1 / pass;
+    return { fee: fee, promoUsed: promoUsed, first: first, retry: retry, hasReset: reset != null, act: act, att: att, total: first + (att - 1) * retry + act };
+  }
+
+  function sel() { return $("size").value; }
+  function fillPlans() {
+    var size = Number(sel()), cur = $("plan").value, html = "";
+    D.forEach(function (r, i) { if (r.size === size) html += '<option value="' + i + '">' + esc(r.firm + " " + r.plan + " " + size + "K" + (r.m ? " (monthly)" : "")) + "</option>"; });
+    html += '<option value="custom">Type my own fee</option>';
+    $("plan").innerHTML = html;
+    if ($("plan").querySelector('option[value="' + cur + '"]')) $("plan").value = cur;
+  }
+
+  function render() {
+    var err = $("err"), pr = num("pass"), mo = num("months"), cu = num("custom"), orr = num("reset"), oa = num("act");
+    var basis = $("basis").value, isCustom = $("plan").value === "custom";
+    $("customWrap").hidden = !isCustom;
+    var bad = null;
+    if (pr == null || isNaN(pr) || pr < 1 || pr > 100) bad = "Enter a pass rate between 1 and 100.";
+    else if (mo == null || isNaN(mo) || mo < 1) bad = "Months per attempt must be 1 or more.";
+    else if (isNaN(orr) || isNaN(oa) || isNaN(cu)) bad = "Fees must be zero or more.";
+    err.hidden = !bad; err.textContent = bad || "";
+    if (bad) { ["rAtt", "rCost", "rFee"].forEach(function (k) { $(k).textContent = "–"; }); $("cmp").innerHTML = ""; return; }
+    var p = pr / 100;
+
+    var row, res;
+    if (isCustom) {
+      if (cu == null) { ["rAtt", "rCost", "rFee"].forEach(function (k) { $(k).textContent = "–"; }); $("rAttS").textContent = ""; $("rCostS").textContent = ""; $("rFeeS").textContent = "Type a fee above."; $("rHow").textContent = ""; }
+      else {
+        row = { list: cu, promo: null, m: 0, reset: null, act: 0 };
+        res = calc(row, p, mo, basis, orr, oa);
+      }
+    } else {
+      row = D[Number($("plan").value)];
+      res = calc(row, p, mo, basis, orr, oa);
+    }
+    if (res) {
+      var c = row.cur;
+      $("rAtt").textContent = res.att.toFixed(1);
+      $("rAttS").textContent = "1 ÷ " + pr + "% pass rate";
+      $("rCost").textContent = money(res.total, c);
+      $("rCostS").textContent = "average, not a promise";
+      $("rFee").textContent = money(res.first, c);
+      $("rFeeS").textContent = "first attempt" + (res.promoUsed ? " (promo price)" : "") + (res.retry !== res.first ? "; retries " + money(res.retry, c) : "; retries cost the same") + (res.act ? "; activation " + money(res.act, c) : "");
+      $("rHow").textContent = "= " + money(res.first, c) + " + " + (res.att - 1).toFixed(1) + " retries × " + money(res.retry, c) + (res.act ? " + " + money(res.act, c) + " activation" : "") + (res.hasReset ? "" : " (no sourced reset fee: retries priced as a full re-buy)") + ".";
+    }
+
+    var size = Number(sel()), rows = D.filter(function (r) { return r.size === size; }).map(function (r) { return { r: r, x: calc(r, p, mo, basis, null, null) }; });
+    rows.sort(function (a, b) { return (a.r.cur ? 1 : 0) - (b.r.cur ? 1 : 0) || a.x.total - b.x.total; });
+    var h = '<table><thead><tr><th>Firm and plan</th><th>Price used</th><th>Reset</th><th>Activation</th><th>Expected cost</th><th>Source, checked</th><th></th></tr></thead><tbody>', euroHead = false;
+    rows.forEach(function (o) {
+      var r = o.r, x = o.x, c = r.cur || "$";
+      if (r.cur && !euroHead) { euroHead = true; h += '<tr class="sep"><td colspan="7">Priced in euros (not converted, so not ranked against the dollar rows)</td></tr>'; }
+      h += "<tr><td><strong>" + esc(r.firm) + "</strong> " + esc(r.plan) + (r.m ? ' <span class="meta">(per month)</span>' : "") +
+        (r.code ? '<br><span class="meta">Our code: <strong>' + esc(r.code) + "</strong></span>" : "") +
+        (r.note ? '<br><span class="meta">' + esc(r.note) + "</span>" : "") + "</td>" +
+        '<td class="num">' + money(x.fee, c) + (r.m ? "/mo" : "") + ' <span class="tag' + (x.promoUsed ? "" : " list") + '">' + (x.promoUsed ? "promo" : "list") + "</span>" +
+        (r.promo != null ? '<br><span class="meta">' + (x.promoUsed ? "list " + money(r.list, c) : "promo " + money(r.promo, c)) + "</span>" : "") + "</td>" +
+        '<td class="num">' + (r.reset != null ? money(r.reset, c) : "–") + "</td>" +
+        '<td class="num">' + (r.act ? money(r.act, c) : "$0") + "</td>" +
+        '<td class="num"><strong>' + money(x.total, c) + "</strong></td>" +
+        "<td>" + (r.src === "firm" ? "Firm site" : "Third-party") + ", " + esc(r.chk) + "</td>" +
+        '<td><a class="btn sm" href="' + r.go + '" rel="sponsored nofollow">Visit</a></td></tr>';
+    });
+    $("cmp").innerHTML = h + "</tbody></table>";
+  }
+
+  ["size"].forEach(function (id) { $(id).addEventListener("change", function () { fillPlans(); render(); }); });
+  ["plan", "basis", "pass", "months", "custom", "reset", "act"].forEach(function (id) {
+    $(id).addEventListener("input", render); $(id).addEventListener("change", render);
+  });
+  fillPlans(); render();
+})();
+</script>
+</body>
+</html>
