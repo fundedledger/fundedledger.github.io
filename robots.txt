@@ -1,4 +1,5 @@
 User-agent: *
 Disallow: /go/
+Disallow: /media/
 
 Sitemap: https://fundedxledger.com/sitemap.xml
