@@ -4,9 +4,9 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>FTMO Futures Review (2026): Rules, Drawdown, Growth vs Pro</title>
-<meta name="description" content="FTMO Futures review and rules as of 31 October 2026: end-of-day trailing drawdown, Growth vs Pro, monthly billing, 4:10pm ET flat rule and what's unconfirmed.">
+<meta name="description" content="FTMO Futures review, rules checked 5 November 2026: end-of-day trailing drawdown, Growth vs Pro, monthly cost, the 4:10pm ET flat rule and payout caps.">
 <meta property="og:title" content="FTMO Futures Review (2026): Rules, Drawdown, Growth vs Pro">
-<meta property="og:description" content="FTMO Futures review and rules as of 31 October 2026: end-of-day trailing drawdown, Growth vs Pro, monthly billing, 4:10pm ET flat rule and what's unconfirmed.">
+<meta property="og:description" content="FTMO Futures review, rules checked 5 November 2026: end-of-day trailing drawdown, Growth vs Pro, monthly cost, the 4:10pm ET flat rule and payout caps.">
 <meta property="og:type" content="article">
 <meta property="og:url" content="https://fundedxledger.com/reviews/ftmo-futures.html">
 <meta name="twitter:card" content="summary">
@@ -15,6 +15,16 @@
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=JetBrains+Mono:wght@500;700&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="../style.css?v=5">
+<script type="application/ld+json">
+{"@context":"https://schema.org","@type":"FAQPage","mainEntity":[
+{"@type":"Question","name":"Is FTMO Futures a one-time fee or a subscription?","acceptedAnswer":{"@type":"Answer","text":"A monthly subscription, charged at purchase and on the same date each month. There is no activation fee, and passing the Evaluation cancels the subscription. Sim-Funded accounts are not charged. Checked 5 November 2026."}},
+{"@type":"Question","name":"What is the difference between Growth and Pro?","acceptedAnswer":{"@type":"Answer","text":"Growth is cheaper, has no daily loss limit in the Evaluation, uses a 40% consistency rule and lets you request up to 50% of profit per payout (caps $2,500 to $4,000). Pro has a hard daily loss limit, a 50% consistency rule, lets you request up to 100% of profit and has caps of $5,000 to $8,000. Both pay a 90/10 split per FTMO's rules page."}},
+{"@type":"Question","name":"Can I hold FTMO Futures positions overnight?","acceptedAnswer":{"@type":"Answer","text":"No. Everything must be closed, and all resting orders (stops, limits, brackets) cancelled, before 4:10pm ET each day. FTMO says not to rely on the platform's auto-liquidation."}},
+{"@type":"Question","name":"Can I use a bot or trade copier?","acceptedAnswer":{"@type":"Answer","text":"Your own legitimate, non-high-frequency bot is allowed; a shared off-the-shelf EA risks denial of your Sim-Funded account. Copying your own trades across your own FTMO Futures accounts is allowed; copying someone else's is not."}},
+{"@type":"Question","name":"How fast does FTMO Futures pay?","acceptedAnswer":{"@type":"Answer","text":"FTMO doesn't state a processing time for Futures; payout requests are pending FTMO's approval. I haven't traded Futures, and no Futures payout-speed data exists yet. Payout methods are Wise, Revolut bank wire, Visa Direct and Mastercard Send (not for US clients), with a $20 minimum."}},
+{"@type":"Question","name":"Is there an FTMO Futures discount code?","acceptedAnswer":{"@type":"Answer","text":"No. FTMO says its affiliate code does not change the price, and we hold no discount code for Futures."}}
+]}
+</script>
 </head>
 <body>
 <header class="site"><div class="wrap">
@@ -31,42 +41,53 @@
   <section class="hero">
     <span class="eyebrow">Review · futures</span>
     <h1>FTMO Futures Review (2026)</h1>
-    <p class="lede">A new, single-phase futures program from FTMO with the drawdown type I prefer on futures: end-of-day trailing that locks at your starting balance. I haven't traded it, so this review is built from FTMO's published rules, and several details are still unconfirmed.</p>
-    <div class="byline"><span class="chip">Updated 31 October 2026</span><span class="chip">I have not traded FTMO Futures</span><span class="chip">Beta / early access</span></div>
+    <p class="lede">I only buy end-of-day trailing drawdown on futures, and FTMO Futures uses it. I haven't traded this product, so this is a rules-and-costs review, not a results review. It suits futures day traders who can be flat by 4:10pm ET and who don't mind that the numbers are still moving: FTMO changed two Growth plans on 5 November 2026.</p>
+    <div class="byline"><span class="chip">Last checked 5 November 2026</span><span class="chip">I have not traded FTMO Futures</span><span class="chip">Rules changed 5 Nov 2026</span></div>
   </section>
 
   <p class="disclosure">Disclosure: this review contains affiliate links. If you sign up through them I may earn a commission, at no extra cost to you. FTMO says its affiliate code does not change the price, so there is no discount here.</p>
 
   <div class="verdict">
-    <p><strong>Verdict:</strong> FTMO Futures is worth a look if you want end-of-day trailing drawdown, no activation fee and a choice between an easier plan (Growth) and a stricter, higher-cap plan (Pro). It is also brand new. FTMO itself calls it Beta and says parameters, pricing and availability can change, and there is no Futures payout proof yet, including from me. Treat everything below as of 31 October 2026.</p>
+    <p><strong>Verdict:</strong> FTMO Futures is worth a look if you want end-of-day trailing drawdown, no activation fee and a choice between an easier plan (Growth) and a stricter, higher-cap plan (Pro). The catches: monthly billing keeps running while you try, everything must be flat by 4:10pm ET, nobody has measured its payout speed yet, and FTMO has already changed rules once. Read the numbers below as of 5 November 2026.</p>
     <p><a class="btn" href="../go/ftmo-futures.html" rel="sponsored nofollow">See FTMO Futures pricing</a> <small>No code of ours · <a href="../deals/ftmo-discount-code.html">FTMO discount code page</a></small></p>
   </div>
 
+  <h2>In short</h2>
+  <ul>
+    <li>End-of-day trailing drawdown that locks at your starting balance, with no intraday trailing.</li>
+    <li>Monthly subscription from $119 (Growth 50K) to $269 (Pro 150K), no activation fee, and passing stops the billing.</li>
+    <li>Growth has no Evaluation daily loss limit. Pro has a hard one.</li>
+    <li>Payout caps run from $2,500 (Growth 50K) to $8,000 (Pro 150K), at 90/10.</li>
+    <li>Flat by 4:10pm ET with all stops and brackets cancelled.</li>
+    <li>No Futures payout record exists yet, from me or anyone I can cite.</li>
+  </ul>
+
   <dl class="glance">
-    <div><dt>Has it paid me?</dt><dd class="unpaid">No for FTMO Futures: I have not traded it. FTMO's CFD 2-Step has paid me (see below), and that does not carry over.</dd></div>
-    <div><dt>Best for</dt><dd>Futures traders who want end-of-day trailing and can be flat by 4:10pm ET</dd></div>
-    <div><dt>Drawdown</dt><dd>End-of-day trailing on equity, locks at the starting balance; no intraday trailing</dd></div>
-    <div><dt>Profit split</dt><dd>90/10 per FTMO's rules page (one FTMO blog line says Pro keeps 100%)</dd></div>
+    <div><dt>Has it paid me?</dt><dd class="unpaid">Not on Futures: I haven't traded it. FTMO's CFD 2-Step has paid me (see below), and that doesn't carry over.</dd></div>
+    <div><dt>Best for</dt><dd>Futures day traders who want end-of-day trailing and can be flat by 4:10pm ET</dd></div>
+    <div><dt>Drawdown</dt><dd>End-of-day trailing on equity, locks at the starting balance</dd></div>
+    <div><dt>Profit split</dt><dd>90/10 on both plans per FTMO's rules page</dd></div>
     <div><dt>Billing</dt><dd>Monthly subscription; no activation fee; cancels when you pass</dd></div>
     <div><dt>Platforms</dt><dd>NinjaTrader, Tradovate, TradingView</dd></div>
   </dl>
 
-  <p class="meta"><strong>Beta notice:</strong> FTMO Futures launched in September 2026 and FTMO describes it as in the Beta phase. Every price and rule on this page is as of 31 October 2026 and may have changed since.</p>
+  <p class="meta"><strong>Last checked: 5 November 2026.</strong> FTMO launched Futures in September 2026. Its launch post called the product a beta, and the numbers have already moved once. Re-check FTMO's page before you buy.</p>
 
   <div class="toc"><strong>On this page</strong><ol>
-    <li><a href="#experience">What I have and haven't done</a></li>
-    <li><a href="#rules">Rules table</a></li>
-    <li><a href="#drawdown">The drawdown</a></li>
-    <li><a href="#plans">Growth vs Pro</a></li>
-    <li><a href="#cost">What it costs</a></li>
-    <li><a href="#watch-out">Watch out</a></li>
-    <li><a href="#pros-cons">Pros and cons</a></li>
+    <li><a href="#experience">My experience</a></li>
+    <li><a href="#plans">Plans and prices</a></li>
+    <li><a href="#rules">The rules that matter</a></li>
+    <li><a href="#payouts">Payouts</a></li>
+    <li><a href="#cost">What it really costs</a></li>
+    <li><a href="#pros-cons">Pros, cons and the catches</a></li>
+    <li><a href="#who">Who it's for</a></li>
     <li><a href="#faq">FAQ</a></li>
+    <li><a href="#verdict">Sources and verdict</a></li>
   </ol></div>
 
-  <h2 id="experience">What I have and haven't done</h2>
+  <h2 id="experience">My experience</h2>
   <aside class="author">
-    <p><strong>I haven't traded FTMO Futures,</strong> so I can't tell you how its payouts or support work. What I can say is that FTMO's CFD 2-Step has paid me four times in 2026, $26,138.16 in total, with each payout taking about 2–3 days. That is a different product with different rules. It is not evidence that Futures will pay, and no Futures payout proof exists yet.</p>
+    <p><strong>I haven't traded FTMO Futures,</strong> so I can't tell you how its payouts or support work. What I can say is that FTMO's CFD 2-Step has paid me four times in 2026, $26,138.16 in total, with each payout taking about 2–3 days. That is a different product with different rules, and it isn't evidence that Futures will pay. I'm judging Futures the way I'd judge any firm after buying 100+ evaluations: from the rules, the costs and the fine print.</p>
     <figure class="proof">
       <div class="proof-grid">
         <a href="../img/proof/ftmo-payout-2026-03-02.jpg"><img src="../img/proof/ftmo-payout-2026-03-02.jpg" alt="FTMO CFD reward certificate: $7,228.90, March 2, 2026" width="1080" height="1080" loading="lazy"></a>
@@ -76,118 +97,167 @@
       </div>
       <figcaption>My four FTMO <strong>CFD (2-Step)</strong> payouts in 2026: $7,228.90 (Mar 2), $9,264.92 (Mar 23), $5,040.18 (Apr 7) and $4,604.16 (Sep 10), <strong>$26,138.16</strong> in total. Not FTMO Futures. Name and verification QR code blurred for privacy.</figcaption>
     </figure>
-    <p>More on that product in my <a href="ftmo.html">FTMO CFD review</a>.</p>
+    <p>The one rule I do bring from my own trading: on futures I only buy end-of-day trailing, because intraday trailing cost me Apex accounts again and again. Even end-of-day trailing has ended funded accounts of mine that were in profit, so it isn't painless. More on the CFD product in my <a href="ftmo.html">FTMO CFD review</a>.</p>
   </aside>
 
-  <h2 id="rules">FTMO Futures rules (as of 31 October 2026)</h2>
+  <h2 id="plans">Plans and prices</h2>
+  <p>There are two plans, Growth and Pro, each in 50K, 100K and 150K. It's a single-phase Evaluation, then a Sim-Funded account. All Evaluation and Sim-Funded accounts are simulated, with fictitious funds, and the Sim-Funded account pays real rewards. Here is every plan side by side, read from FTMO's trading objectives page on 5 November 2026.</p>
   <div class="table-scroll">
   <table>
+    <thead><tr><th></th><th>Growth 50K</th><th>Growth 100K</th><th>Growth 150K</th><th>Pro 50K</th><th>Pro 100K</th><th>Pro 150K</th></tr></thead>
     <tbody>
-      <tr><th>Structure</th><td>Single-phase Evaluation, then a Sim-Funded account. All accounts are simulated, with fictitious funds.</td></tr>
-      <tr><th>Sizes</th><td>50K, 100K, 150K on both plans; up to 3 Sim-Funded accounts at once (up to $450,000 in total)</td></tr>
-      <tr><th>Billing</th><td>Monthly subscription, charged at purchase and on the same date each month. No activation fee. It cancels automatically when you pass; Sim-Funded accounts aren't charged. You can cancel in the Client Area any time.</td></tr>
-      <tr><th>Minimum trading days</th><td>None for the Evaluation</td></tr>
-      <tr><th>Contracts (Evaluation)</th><td>5 / 10 / 15 contracts for 50K / 100K / 150K, same on both plans (1 mini = 1; 10 micros = 1)</td></tr>
-      <tr><th>Instruments</th><td>30 contracts: 19 minis and 11 micros across equity indices, metals, energies, FX and crypto (including NQ, ES, GC)</td></tr>
-      <tr><th>Platforms</th><td>NinjaTrader, Tradovate, TradingView. MT4/MT5 not supported.</td></tr>
-      <tr><th>News trading</th><td>Allowed in every phase, subject to FTMO's Forbidden Trading Practices</td></tr>
-      <tr><th>Overnight / weekend</th><td>Not allowed. Everything must be flat, and all resting orders (stops, limits, brackets) cancelled, by 4:10pm ET each day.</td></tr>
-      <tr><th>Copy trading</th><td>Prohibited. This affects trade copiers, so don't assume yours is allowed here.</td></tr>
-      <tr><th>EAs / bots</th><td>Allowed if legitimate and not a Forbidden Practice. A third-party EA shared with other traders risks denial of your Sim-Funded account. FTMO's list also names "prohibited automated strategies" without detail I could confirm, so read the Forbidden Trading Practices page.</td></tr>
-      <tr><th>Inactivity</th><td>30 consecutive days without trading triggers a warning; another 30 days inactive closes a Sim-Funded account</td></tr>
-      <tr><th>Who can join</th><td>Global, 18+, individuals only. Some countries excluded, and five US states are not accepted: Arkansas, Delaware, Louisiana, Montana, South Carolina.</td></tr>
-      <tr><th>Payouts</th><td>90/10 per the rules page; minimum $20; Wise, Revolut bank wire, Visa Direct or Mastercard Send (not US clients); US clients need an IRS W-9 and proof of a US bank account. Requesting a payout closes open positions and pending orders.</td></tr>
+      <tr><td><strong>Monthly fee</strong></td><td>$119</td><td>$169</td><td>$229</td><td>$139</td><td>$199</td><td>$269</td></tr>
+      <tr><td><strong>Reset fee</strong></td><td>$109</td><td>$159</td><td>$219</td><td>$129</td><td>$189</td><td>$259</td></tr>
+      <tr><td><strong>Profit target</strong></td><td>$3,000</td><td>$6,000</td><td>$9,000</td><td>$3,000</td><td>$6,000</td><td>$9,000</td></tr>
+      <tr><td><strong>Max drawdown (end-of-day trailing)</strong></td><td>$2,000</td><td>$3,000</td><td>$4,500</td><td>$3,000</td><td>$4,500</td><td>$6,000</td></tr>
+      <tr><td><strong>Daily loss limit (Evaluation)</strong></td><td>None</td><td>None</td><td>None</td><td>$1,000 hard</td><td>$1,500 hard</td><td>$2,000 hard</td></tr>
+      <tr><td><strong>Consistency (Evaluation)</strong></td><td>40%</td><td>40%</td><td>40%</td><td>50%</td><td>50%</td><td>50%</td></tr>
+      <tr><td><strong>Max contracts (Evaluation)</strong></td><td>5</td><td>10</td><td>15</td><td>5</td><td>10</td><td>15</td></tr>
+      <tr><td><strong>Payout cap per request</strong></td><td>$2,500</td><td>$3,000</td><td>$4,000</td><td>$5,000</td><td>$6,000</td><td>$8,000</td></tr>
+      <tr><td><strong>Split</strong></td><td colspan="6">90/10 on both plans (rules page)</td></tr>
     </tbody>
   </table>
   </div>
-  <p class="meta">Source: FTMO's Futures pages and FAQ, checked 31 October 2026. Rules are from FTMO's published text, not from trading it.</p>
+  <p class="meta">Source: FTMO trading objectives and rules page, checked 5 November 2026. Prices are list prices; our link carries no code, and FTMO says the affiliate code doesn't change the price.</p>
 
-  <h2 id="drawdown">The drawdown: end-of-day trailing</h2>
-  <p>This is the main reason to consider FTMO Futures. Per FTMO's rules, the drawdown is measured on equity (balance plus open P&amp;L minus commissions) and works like this:</p>
-  <ul>
-    <li><strong>The floor is set once per trading day,</strong> from your highest prior closing balance minus the drawdown amount.</li>
-    <li><strong>It only moves up,</strong> and it locks at your starting balance. After that you have a fixed cushion.</li>
-    <li><strong>No intraday trailing.</strong> Open profit during the day doesn't raise the floor. Only your close does.</li>
-  </ul>
-  <p>My own rule on futures is simple: I only buy end-of-day trailing. Intraday trailing cost me Apex accounts again and again, so I stopped buying it. End-of-day trailing has still ended funded accounts of mine that were in profit, so it isn't painless, but it's the best option futures firms offer. By FTMO's description, this fits that rule. Again, that's from FTMO's rules, not from trading it. The exact drawdown amount per plan and size is unconfirmed (check FTMO). More in <a href="../guides/trailing-vs-end-of-day-drawdown.html">trailing vs end-of-day drawdown</a>.</p>
-
-  <h2 id="plans">Growth vs Pro</h2>
-  <p>FTMO's two plans differ on a few points it states plainly. Everything I couldn't confirm per plan is marked.</p>
+  <p><strong>The 5 November change.</strong> From 4:30am ET on 5 November 2026, FTMO tightened Growth 100K and 150K for new Evaluations. FTMO's stated reason: "Growth is a new product, and we're fine-tuning it with real market data." Older Evaluations keep the old values. Growth 50K and all Pro plans were not changed.</p>
   <div class="table-scroll">
   <table>
-    <thead><tr><th></th><th>Growth</th><th>Pro</th></tr></thead>
+    <thead><tr><th></th><th>Before 5 Nov 2026</th><th>New Evaluations</th></tr></thead>
     <tbody>
-      <tr><td><strong>Daily loss limit (Evaluation)</strong></td><td>None</td><td>Hard limit; breaching it fails the Evaluation</td></tr>
-      <tr><td><strong>Payout cap range</strong></td><td>$2,500–$4,000 (per FTMO's landing page and launch blog)</td><td>$5,000–$8,000 (per FTMO's landing page and launch blog)</td></tr>
-      <tr><td><strong>Qualifying days per payout</strong></td><td>4 (per FTMO's launch blog)</td><td>5 (per FTMO's launch blog)</td></tr>
-      <tr><td><strong>Amount per payout cycle</strong></td><td>Up to 50% of available profit</td><td>Up to 100% of available profit</td></tr>
-      <tr><td><strong>Cap per account size</strong></td><td>Unconfirmed, check FTMO</td><td>Unconfirmed, check FTMO</td></tr>
-      <tr><td><strong>Drawdown amount</strong></td><td>Unconfirmed, check FTMO</td><td>Unconfirmed, check FTMO</td></tr>
-      <tr><td><strong>Evaluation consistency rule</strong></td><td>40% or 50% of profit for the best day; which plan uses which is unconfirmed, check FTMO</td><td>40% or 50%; unconfirmed, check FTMO</td></tr>
-      <tr><td><strong>Payout cadence</strong></td><td>FTMO's page says "every 4 days"; this is a qualifying-day count, not a confirmed calendar cadence</td><td>Unconfirmed, check FTMO</td></tr>
-      <tr><td><strong>Profit split</strong></td><td>90/10</td><td>90/10 on FTMO's rules page; an FTMO blog line says 100%. FTMO's pages differ.</td></tr>
+      <tr><td><strong>Growth 100K max drawdown</strong></td><td>$3,500</td><td>$3,000</td></tr>
+      <tr><td><strong>Growth 100K payout day threshold</strong></td><td>$250</td><td>$300</td></tr>
+      <tr><td><strong>Growth 150K max drawdown</strong></td><td>$5,000</td><td>$4,500</td></tr>
+      <tr><td><strong>Growth 150K payout day threshold</strong></td><td>$300</td><td>$450</td></tr>
     </tbody>
   </table>
   </div>
-  <p class="meta">As of 31 October 2026. The consistency rule applies to the Evaluation only. Going over isn't a breach: you keep trading until your best day falls under the limit. FTMO says there is no consistency rule once you're Sim-Funded. First-payout timing and processing time are not stated on any FTMO page I could read.</p>
-
-  <h2 id="cost">What it costs</h2>
-  <p>Fees only tell half the story. To see what getting funded really costs once you count failed attempts, resets and activation fees, try our <a href="../tools/prop-firm-cost-calculator.html">prop firm cost calculator</a>.</p>
-  <p>Reported monthly list prices, unconfirmed mapping, checked 2026-10-31: Growth $119 / $169 / $229 and Pro $139 / $199 / $269 for 50K / 100K / 150K. I could not verify which price belongs to which plan and size from a readable FTMO price table, so check the checkout. Reset fees (a reset issues a new Evaluation and is non-refundable) are also unconfirmed. Refund terms for Futures are unconfirmed too; don't assume the CFD refund applies.</p>
-  <p>Because this is a subscription, the meter keeps running while you trade. A slow pass costs more than the same attempt would on a one-time fee. I've failed more evaluations than I've passed across all firms, so budget for more than one month. There is no discount code: FTMO says the affiliate code "does not change the price".</p>
-
+  <p>A Growth drawdown of $3,500 or $5,000 on another site is out of date for new buyers, and the rules moving within weeks of launch suggests they may move again. You can hold up to 3 Sim-Funded accounts at once. Platforms are NinjaTrader, Tradovate and TradingView.</p>
   <p><a class="btn" href="../go/ftmo-futures.html" rel="sponsored nofollow">See FTMO Futures pricing</a> <small>No code of ours · <a href="../deals/ftmo-discount-code.html">FTMO discount code page</a></small></p>
 
-  <h2 id="watch-out">Watch out</h2>
-  <ul>
-    <li><strong>It's Beta.</strong> FTMO says parameters, pricing and availability are subject to change. The product launched in September 2026.</li>
-    <li><strong>Monthly billing keeps running</strong> until you pass or cancel. Resets cost extra.</li>
-    <li><strong>Pro has a hard daily loss limit.</strong> Breaching it fails the Evaluation and, once funded, may terminate the account (per FTMO's rules summary, unconfirmed).</li>
-    <li><strong>Evaluation consistency rule.</strong> Your best day must stay under 40% or 50% of total profit, which can force extra trading days.</li>
-    <li><strong>Flat by 4:10pm ET</strong>, resting stops and brackets included. FTMO says not to rely on auto-liquidation.</li>
-    <li><strong>No copy trading.</strong> I have used a trade copier elsewhere, but I can't tell you it works here, and FTMO lists copy trading as forbidden.</li>
-    <li><strong>Payout gaps.</strong> First-payout timing is not stated, and there is no Futures payout proof from me or anyone I can cite.</li>
-    <li><strong>Simulated funds.</strong> All accounts are demo accounts. Payouts come from FTMO, not a live market account.</li>
-    <li><strong>Trustpilot isn't futures-specific.</strong> FTMO overall is 4.8 from about 55,000 reviews (checked 31 October 2026), but that is mostly the CFD business, and Trustpilot's summary mentions slow support after technical errors.</li>
-    <li><strong>US restrictions.</strong> Five US states are excluded, and US clients need a W-9 to be paid.</li>
-  </ul>
+  <h2 id="rules">The rules that matter</h2>
+  <p>These are the rules most likely to end an account. Every worked example below is <strong>our own arithmetic, an example and not a real trade</strong>.</p>
 
-  <h2 id="pros-cons">Pros and cons</h2>
+  <h3>1. The end-of-day trailing drawdown</h3>
+  <p>This is the main reason to look at FTMO Futures. Drawdown is measured on equity (balance plus open P&amp;L minus commissions). The floor is set once per trading day from your highest prior closing balance minus the drawdown amount. It only moves up, and once it reaches your starting balance it locks there permanently. Open profit during the day doesn't raise it; only your close does. The breach itself is measured on live equity at any point, so a deep intraday dip below the floor still counts.</p>
+  <p><strong>Example (Pro 50K, $3,000 drawdown):</strong></p>
+  <ul>
+    <li>Day 1: floor is $47,000. You close at $51,000.</li>
+    <li>Day 2: floor moves up to $48,000. You close at $53,000.</li>
+    <li>Day 3: $53,000 minus $3,000 would be $50,000, which equals your starting balance, so the floor locks at $50,000 for good.</li>
+    <li>From then on your cushion is simply your balance minus $50,000. At a $53,000 close that's $3,000; at $56,000 it's $6,000.</li>
+  </ul>
+  <p>Growth 50K has a $2,000 drawdown, so it locks after only $2,000 of closed profit. This is the same end-of-day type that has ended funded accounts of mine while in profit, so don't mistake it for safe. More in <a href="../guides/trailing-vs-end-of-day-drawdown.html">trailing vs end-of-day drawdown</a>.</p>
+
+  <h3>2. The consistency rule (Evaluation only)</h3>
+  <p>Your best day can't be more than 40% (Growth) or 50% (Pro) of your total closed profit. Going over is not a breach: you just keep trading until the best day drops under the limit. FTMO states there is no consistency rule or profit target once you're Sim-Funded. The catch is that a big early day forces more trading days.</p>
+  <p><strong>Example (Growth 50K, $3,000 target, 40%):</strong> day 1 you make $2,000 and day 2 $1,000. Total $3,000, so the target is hit, but your best day is 66.7% of profit. You haven't passed. If day 1 stays your best day, you need $2,000 ÷ 0.40 = $5,000 total profit. On Pro 50K a $2,500 best day also needs $5,000 total. FTMO's minimum possible pass is 3 trading days on Growth and 2 on Pro.</p>
+
+  <h3>3. Pro's hard daily loss limit, and the full-withdrawal trap</h3>
+  <p>Pro has a hard daily loss limit in the Evaluation ($1,000, $1,500 or $2,000 by size), measured on equity against the balance at the start of the trading day. Breaching it fails the Evaluation, and on a Sim-Funded Pro account it's a hard limit too. Growth has none in the Evaluation and a soft one when funded.</p>
+  <p>Pro also lets you request up to 100% of your profit above the starting balance. FTMO's own FAQ warns that a full withdrawal can breach the maximum drawdown. <strong>Example (Pro 50K, drawdown already locked at $50,000):</strong> you're at $53,000 and request the $3,000 of profit. Your balance drops to $50,000, which is exactly the floor. Your cushion is $0, and the next small loss breaches the account. If you want to keep trading, request less than the maximum.</p>
+
+  <h3>4. Flat by 4:10pm ET</h3>
+  <p>No overnight or weekend positions. Everything must be closed and every resting order (stops, limits, brackets) cancelled before 4:10pm ET, or at market close if that's sooner. The platform auto-liquidates, but FTMO says not to rely on it. A trading day runs from 6:00pm ET to 4:10pm ET the next calendar day. If you swing trade, or you like to leave a bracket working into the evening, this is the rule that ends your day.</p>
+
+  <p><strong>Also allowed or banned:</strong> news trading is allowed. Bots are allowed if they are yours and not high-frequency; a shared off-the-shelf EA risks denial of your Sim-Funded account. Copying your own trades across your own FTMO accounts is allowed, copying others is not, and hedging between accounts is banned. FTMO's <a href="https://ftmo.com/en/futures/forbidden-trading-practices" rel="nofollow">forbidden practices</a> are broad and judgment-based, with penalties up to forfeited rewards. Five US states are excluded (Arkansas, Delaware, Louisiana, Montana, South Carolina), plus many countries.</p>
+
+  <h2 id="payouts">Payouts</h2>
+  <p>You request from a Sim-Funded account once you have enough qualifying days in the payout cycle. A qualifying day is a day with at least a minimum closed profit, and the threshold depends on plan and size:</p>
+  <div class="table-scroll">
+  <table>
+    <thead><tr><th></th><th>50K</th><th>100K</th><th>150K</th></tr></thead>
+    <tbody>
+      <tr><td><strong>Growth: 4 days at</strong></td><td>$150+</td><td>$300+ (was $250)</td><td>$450+ (was $300)</td></tr>
+      <tr><td><strong>Pro: 5 days at</strong></td><td>$200+</td><td>$300+</td><td>$500+</td></tr>
+    </tbody>
+  </table>
+  </div>
+  <p class="meta">"Was" values apply to Evaluations created before 5 November 2026. New Evaluations use the first figure. Source: FTMO trading objectives page, checked 5 November 2026.</p>
+  <ul>
+    <li><strong>How much:</strong> Growth lets you request up to 50% of profit above the starting balance; Pro up to 100%. Both are capped per request (see the plans table). FTMO's example: $4,000 of profit on Growth means you may request $2,000.</li>
+    <li><strong>Split:</strong> 90/10 per FTMO's rules page, applied after caps. $2,000 requested pays $1,800. FTMO's launch blog once said Pro keeps 100%; the rules page is the more detailed source and says 90/10, so that's what I've used.</li>
+    <li><strong>Cadence:</strong> "paid every 4 days" on FTMO's landing page means 4 qualifying days, not a calendar schedule.</li>
+    <li><strong>Minimum and methods:</strong> $20 minimum, paid in USD by Wise, Revolut bank wire, Visa Direct or Mastercard Send (not for US clients). Requesting closes your open positions and pending orders.</li>
+    <li><strong>Speed:</strong> FTMO doesn't state a processing time for Futures; requests are "pending FTMO's approval". My CFD payouts took 2–3 days, but I won't apply that to a different product.</li>
+  </ul>
+  <h2 id="cost">What it really costs</h2>
+  <p>Fees only tell half the story. To see what getting funded costs once you count failed attempts, resets and activation fees, use our <a href="../tools/prop-firm-cost-calculator.html">prop firm cost calculator</a>. FTMO Futures has no activation fee, but it's a subscription, so time is what costs you.</p>
+  <p>I've bought 100+ evaluations and passed 40+, which means I've failed more than I've passed. That's why I'd budget for two or three tries, not one. When you fail, the subscription stays active: you get a new account on the next billing date, or you can buy a Reset and restart immediately. Resets don't change your billing day. Neither the Evaluation fee nor Resets are refunded, and there's no free trial.</p>
+  <p><strong>Example (list prices, our arithmetic):</strong></p>
+  <ul>
+    <li><strong>Growth 50K, fail in week one and wait for the next account:</strong> two months, $238.</li>
+    <li><strong>Growth 50K, fail twice and reset both times:</strong> $119 + 2 × $109 = $337, before the next monthly charge.</li>
+    <li><strong>150K for one, two or three months:</strong> Growth $229 / $458 / $687; Pro $269 / $538 / $807.</li>
+  </ul>
+  <p>Add FTMO's commissions ($0.50 per side on minis, $0.20 on micros) plus exchange and NFA fees it doesn't list.</p>
+
+  <p><a class="btn" href="../go/ftmo-futures.html" rel="sponsored nofollow">Check today's FTMO Futures price</a> <small>No code of ours · <a href="../deals/ftmo-discount-code.html">FTMO discount code page</a></small></p>
+
+  <h2 id="pros-cons">Pros, cons and the catches</h2>
   <div class="proscons">
     <div class="pros"><h3>Pros</h3><ul>
       <li>End-of-day trailing that locks at the starting balance</li>
-      <li>No activation fee; single-phase Evaluation</li>
-      <li>No minimum trading days in the Evaluation</li>
-      <li>News trading allowed</li>
-      <li>NinjaTrader, Tradovate and TradingView supported</li>
+      <li>No activation fee; single-phase Evaluation; passing stops billing</li>
       <li>Growth has no daily loss limit in the Evaluation</li>
+      <li>Large Pro payout caps ($5,000–$8,000) and 100% requestable</li>
+      <li>News trading and legitimate bots allowed</li>
+      <li>NinjaTrader, Tradovate and TradingView supported</li>
     </ul></div>
     <div class="cons"><h3>Cons</h3><ul>
-      <li>Beta product with rules that may change</li>
-      <li>Monthly subscription, resets extra</li>
+      <li>Rules already changed once, weeks after launch</li>
+      <li>Monthly subscription; resets extra; no refunds</li>
       <li>Everything flat by 4:10pm ET</li>
       <li>Pro's hard daily loss limit</li>
-      <li>Copy trading banned</li>
-      <li>Payout timing and Futures payout record unproven</li>
+      <li>Consistency rule in the Evaluation can force extra days</li>
+      <li>No Futures payout-time data or payout record yet</li>
     </ul></div>
   </div>
 
-  <p><a class="btn" href="../go/ftmo-futures.html" rel="sponsored nofollow">See FTMO Futures pricing</a> <small>No code of ours · <a href="../deals/ftmo-discount-code.html">FTMO discount code page</a></small> <small>Compare with <a href="../compare/ftmo-vs-fundednext.html">FTMO vs FundedNext (CFD)</a></small></p>
+  <h3>The catches</h3>
+  <ul>
+    <li><strong>The rules can move.</strong> The 5 November change applies to new Evaluations only, so check the live page, not a week-old review (including this one).</li>
+    <li><strong>Pro's 100% is a trap if used blindly.</strong> A full withdrawal can leave you on the drawdown floor.</li>
+    <li><strong>Funds are simulated.</strong> Rewards come from FTMO, not a live market account.</li>
+    <li><strong>Trustpilot isn't Futures-specific.</strong> FTMO overall shows 4.8 from about 55,900 reviews (checked 5 November 2026, first page only). I couldn't verify a Futures-only score.</li>
+  </ul>
 
-  <h2>Who FTMO Futures is for</h2>
-  <p><strong>A good fit:</strong> futures day traders who close everything by the afternoon, want end-of-day trailing and are comfortable with a young, Beta program.</p>
-  <p><strong>Not a good fit:</strong> swing traders, anyone who relies on a trade copier, and anyone who wants proven Futures payouts before paying. If you want a firm that has paid me on futures, see my <a href="lucid-trading.html">Lucid Trading review</a>.</p>
+  <h2 id="who">Who it's for (and who should skip it)</h2>
+  <p><strong>A good fit:</strong></p>
+  <ul>
+    <li>Futures day traders who close everything by the afternoon and want end-of-day trailing.</li>
+    <li>Traders who want a high payout cap and can manage the Pro daily loss limit.</li>
+  </ul>
+  <p><strong>Pick another firm if:</strong></p>
+  <ul>
+    <li>You swing trade or hold overnight.</li>
+    <li>You want proven Futures payouts before paying. For a firm that has paid me on futures, see my <a href="lucid-trading.html">Lucid Trading review</a>.</li>
+    <li>You'd rather pay once than monthly. A slow pass costs more here.</li>
+  </ul>
 
   <h2 id="faq">FAQ</h2>
   <div class="faq">
-    <details><summary>Does FTMO Futures pay out?</summary><p>I don't know yet. I haven't traded it, and I have no Futures payout proof. FTMO's CFD 2-Step has paid me $26,138.16 across four 2026 payouts, but that is a different product.</p></details>
-    <details><summary>What is FTMO Futures' drawdown?</summary><p>End-of-day trailing on equity. The floor is set from your highest prior closing balance, only moves up, and locks at your starting balance. There is no intraday trailing. Exact amounts per plan and size are unconfirmed, so check FTMO.</p></details>
-    <details><summary>What's the difference between Growth and Pro?</summary><p>Growth has no daily loss limit in the Evaluation, 4 qualifying days per payout and payouts of up to 50% of available profit, with caps of $2,500–$4,000. Pro has a hard daily loss limit, 5 qualifying days, up to 100% of available profit per cycle and caps of $5,000–$8,000. As of 31 October 2026.</p></details>
-    <details><summary>Is there an FTMO Futures discount code?</summary><p>No. FTMO says its affiliate code does not change the price, and I don't hold a discount code for Futures. Our <a href="../deals/ftmo-discount-code.html">FTMO discount code page</a> tracks FTMO's current offers.</p></details>
-    <details><summary>Can I use TradingView or a trade copier?</summary><p>TradingView is a supported platform (alongside NinjaTrader and Tradovate). Copy trading is prohibited, so don't assume a trade copier is allowed. Check FTMO's Forbidden Trading Practices first.</p></details>
+    <details><summary>Is FTMO Futures a one-time fee or a subscription?</summary><p>A monthly subscription, charged at purchase and on the same date each month. There is no activation fee, and passing the Evaluation cancels the subscription. Sim-Funded accounts are not charged. Checked 5 November 2026.</p></details>
+    <details><summary>What is the difference between Growth and Pro?</summary><p>Growth is cheaper, has no daily loss limit in the Evaluation, uses a 40% consistency rule and lets you request up to 50% of profit per payout (caps $2,500 to $4,000). Pro has a hard daily loss limit, a 50% consistency rule, lets you request up to 100% of profit and has caps of $5,000 to $8,000. Both pay a 90/10 split per FTMO's rules page.</p></details>
+    <details><summary>Can I hold FTMO Futures positions overnight?</summary><p>No. Everything must be closed, and all resting orders (stops, limits, brackets) cancelled, before 4:10pm ET each day. FTMO says not to rely on the platform's auto-liquidation.</p></details>
+    <details><summary>Can I use a bot or trade copier?</summary><p>Your own legitimate, non-high-frequency bot is allowed; a shared off-the-shelf EA risks denial of your Sim-Funded account. Copying your own trades across your own FTMO Futures accounts is allowed; copying someone else's is not.</p></details>
+    <details><summary>How fast does FTMO Futures pay?</summary><p>FTMO doesn't state a processing time for Futures; payout requests are pending FTMO's approval. I haven't traded Futures, and no Futures payout-speed data exists yet. Payout methods are Wise, Revolut bank wire, Visa Direct and Mastercard Send (not for US clients), with a $20 minimum.</p></details>
+    <details><summary>Is there an FTMO Futures discount code?</summary><p>No. FTMO says its affiliate code does not change the price, and we hold no discount code for Futures. Our <a href="../deals/ftmo-discount-code.html">FTMO discount code page</a> tracks FTMO's current offers.</p></details>
   </div>
 
-  <p>More: <a href="ftmo.html">FTMO CFD review</a> · <a href="../guides/trailing-vs-end-of-day-drawdown.html">Trailing vs end-of-day drawdown</a> · <a href="../compare/ftmo-vs-fundednext.html">FTMO vs FundedNext</a> · <a href="../new-prop-firms-2026.html">New prop firms in 2026</a></p>
+  <h2 id="verdict">Sources and verdict</h2>
+  <p><strong>Check it yourself.</strong> Everything above comes from FTMO's own pages, all checked 5 November 2026:</p>
+  <ul>
+    <li><a href="https://ftmo.com/en/futures/trading-objectives-and-rules/" rel="nofollow">Trading objectives and rules</a> (per-size numbers)</li>
+    <li><a href="https://ftmo.com/en/futures/blog/trading-updates/futures-trading-update-5-nov-2026/" rel="nofollow">Futures trading update, 5 November 2026</a> (the Growth change)</li>
+    <li><a href="https://ftmo.com/en/futures/forbidden-trading-practices" rel="nofollow">Forbidden trading practices</a></li>
+    <li><a href="https://ftmo.com/en/futures/" rel="nofollow">FTMO Futures landing page and FAQ</a></li>
+    <li><a href="https://www.trustpilot.com/review/ftmo.com" rel="nofollow">Trustpilot, FTMO overall</a></li>
+  </ul>
+  <p><strong>Verdict:</strong> if your style is intraday futures, flat by the afternoon, FTMO Futures has the drawdown type I'd choose and unusually detailed rules. What it hasn't earned yet is a track record: no payout-speed data, and a first rule change within weeks. If you try it, start with one account, read the live rules page on the day you buy, and use the cost calculator to budget two or three attempts.</p>
+  <p><a class="btn" href="../go/ftmo-futures.html" rel="sponsored nofollow">See FTMO Futures pricing</a> <small>No code of ours · <a href="../deals/ftmo-discount-code.html">FTMO discount code page</a></small> <small>Compare with <a href="../compare/ftmo-vs-fundednext.html">FTMO vs FundedNext (CFD)</a></small></p>
+
+  <p>More: <a href="ftmo.html">FTMO CFD review</a> · <a href="../guides/trailing-vs-end-of-day-drawdown.html">Trailing vs end-of-day drawdown</a> · <a href="../tools/prop-firm-cost-calculator.html">Cost calculator</a> · <a href="../compare/ftmo-vs-fundednext.html">FTMO vs FundedNext</a> · <a href="../new-prop-firms-2026.html">New prop firms in 2026</a></p>
 
   <section class="newsletter" id="newsletter">
     <h3>Get the prop firm rules cheat sheet</h3>
@@ -196,7 +266,7 @@
     <p class="fine">No spam. Unsubscribe any time. Trading carries a high risk of loss; not financial advice.</p>
   </section>
 
-  <div class="risk"><strong>Risk warning:</strong> futures trading carries a high risk of loss. Most traders fail prop firm evaluations, and fees may not be refunded; check FTMO's refund terms. Funded accounts are simulated. Nothing here is financial advice.</div>
+  <div class="risk"><strong>Risk warning:</strong> futures trading carries a high risk of loss. Most traders fail prop firm evaluations, and fees are not refunded on a normal Evaluation or Reset. Funded accounts are simulated. Nothing here is financial advice.</div>
 </div></main>
 
 <footer class="site"><div class="wrap">
