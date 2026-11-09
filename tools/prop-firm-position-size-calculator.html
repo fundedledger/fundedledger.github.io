@@ -1,0 +1,145 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Prop Firm Futures Position Size Calculator (Free)</title>
+<meta name="description" content="Free futures position size calculator for prop firm traders: enter risk and stop size to get contracts for MNQ, MES, NQ, ES and more, and check it against your drawdown room.">
+<meta property="og:title" content="Prop Firm Futures Position Size Calculator (Free)">
+<meta property="og:description" content="Free futures position size calculator for prop firm traders: enter risk and stop size to get contracts for MNQ, MES, NQ, ES and more, and check it against your drawdown room.">
+<meta property="og:type" content="article">
+<meta property="og:url" content="https://fundedxledger.com/tools/prop-firm-position-size-calculator.html">
+<meta name="twitter:card" content="summary">
+<link rel="canonical" href="https://fundedxledger.com/tools/prop-firm-position-size-calculator.html">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=JetBrains+Mono:wght@500;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="../style.css?v=5">
+<style>
+.calc { background: var(--surface); border: 1px solid var(--border); border-radius: var(--radius); padding: 18px 20px; margin: 20px 0; }
+.calc-grid { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 14px 16px; }
+@media (max-width: 640px) { .calc-grid { grid-template-columns: 1fr; } }
+.calc label { display: block; font-size: 12px; font-weight: 700; letter-spacing: .05em; text-transform: uppercase; color: var(--muted); margin-bottom: 5px; }
+.calc input, .calc select { width: 100%; background: var(--bg-2); color: var(--text); border: 1px solid var(--border-strong); border-radius: 8px; padding: 10px 12px; font: inherit; font-size: 16px; }
+.calc input:focus, .calc select:focus { outline: 2px solid var(--accent); outline-offset: 1px; }
+.calc .hint { font-size: 13px; color: var(--muted); margin: 5px 0 0; }
+.calc .full { grid-column: 1 / -1; }
+.result { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 12px; margin: 20px 0; }
+@media (max-width: 640px) { .result { grid-template-columns: 1fr; } }
+.result div.box { background: var(--surface); border: 1px solid var(--border); border-radius: var(--radius); padding: 14px 16px; }
+.result .k { font-size: 11.5px; font-weight: 700; letter-spacing: .06em; text-transform: uppercase; color: var(--muted); }
+.result .v { font-family: "JetBrains Mono", monospace; font-size: 26px; font-weight: 700; color: var(--accent); margin-top: 4px; }
+.result .v.bad { color: var(--warn); }
+.result .s { font-size: 13px; color: var(--text-2); margin-top: 4px; }
+.calc-error { color: var(--warn); font-weight: 600; margin: 12px 0; }
+</style>
+</head>
+<body>
+<header class="site"><div class="wrap">
+  <a class="logo" href="../index.html">Funded Ledger</a>
+  <nav>
+    <a href="../index.html">Best prop firms</a>
+    <a href="../compare/index.html">Reviews &amp; comparisons</a>
+    <a href="../deals.html">Deals</a>
+    <a href="../guides/index.html">Guides</a>
+  </nav>
+</div></header>
+<main><div class="wrap">
+  <section class="hero">
+    <span class="eyebrow">Tool · position size</span>
+    <h1>Prop Firm Futures Position Size Calculator</h1>
+    <p class="lede">Pick your contract, your risk in dollars and your stop size. Get the number of contracts, the real dollar risk, and how much of your remaining drawdown room one stop takes.</p>
+    <div class="byline"><span class="chip">Free, no sign-up</span><span class="chip">Runs in your browser</span><span class="chip">Checked November 2026</span></div>
+  </section>
+
+  <h2 id="calculator">How many contracts?</h2>
+  <form class="calc" id="calc" onsubmit="return false">
+    <div class="calc-grid">
+      <div><label for="inst">Contract</label><select id="inst"></select></div>
+      <div><label for="risk">Risk per trade ($)</label><input id="risk" type="number" inputmode="decimal" min="1" step="any" value="200">
+        <p class="hint">The most you are willing to lose if your stop is hit.</p></div>
+      <div><label for="stop">Stop distance (points)</label><input id="stop" type="number" inputmode="decimal" min="0.01" step="any" value="20">
+        <p class="hint">Points, not ticks. NQ and MNQ: 1 point = 4 ticks.</p></div>
+      <div><label for="max">Firm max contracts, optional</label><input id="max" type="number" inputmode="numeric" min="1" step="1" placeholder="e.g. 10">
+        <p class="hint">Check your firm's contract limit for your account size.</p></div>
+      <div class="full"><label for="room">Room left before your drawdown limit, optional ($)</label><input id="room" type="number" inputmode="decimal" min="1" step="any" placeholder="e.g. 1500">
+        <p class="hint">Account balance minus the drawdown floor. Used to show how much of it one stop takes.</p></div>
+    </div>
+  </form>
+  <p class="calc-error" id="err" role="alert" hidden></p>
+  <div class="result" aria-live="polite">
+    <div class="box"><span class="k">Contracts</span><div class="v" id="r1">–</div><div class="s" id="r1s"></div></div>
+    <div class="box"><span class="k">Actual risk if stopped</span><div class="v" id="r2">–</div><div class="s" id="r2s"></div></div>
+    <div class="box"><span class="k">Share of drawdown room</span><div class="v" id="r3">–</div><div class="s" id="r3s"></div></div>
+  </div>
+
+  <h2 id="how">How the math works</h2>
+  <ol>
+    <li><strong>Risk per contract = stop in points × point value.</strong> A 20-point stop on MNQ ($2 per point) is $40 per contract.</li>
+    <li><strong>Contracts = risk ÷ risk per contract, rounded down.</strong> $200 ÷ $40 = 5 contracts.</li>
+    <li>If your firm caps contracts, the calculator uses the lower of the two numbers.</li>
+    <li>Commissions and slippage are not included. A fast market can fill your stop worse than planned, so leave some margin.</li>
+  </ol>
+  <h3>Point values used</h3>
+  <div class="table-scroll"><table>
+    <thead><tr><th>Contract</th><th>Point value</th><th>Tick size</th><th>Tick value</th></tr></thead>
+    <tbody id="pv"></tbody>
+  </table></div>
+  <p class="meta">These are the standard exchange contract specs. Your broker or firm may offer a different contract set. For the rules that limit size, see <a href="trailing-drawdown-calculator.html">the trailing drawdown calculator</a> and <a href="../guides/trailing-vs-end-of-day-drawdown.html">trailing vs end-of-day drawdown</a>. Looking for a firm that fits NQ trading? See <a href="../guides/best-prop-firm-for-nq.html">best prop firms for NQ</a>.</p>
+
+  <p>More free tools: <a href="prop-firm-cost-calculator.html">Prop firm cost calculator</a> · <a href="consistency-rule-calculator.html">Consistency rule calculator</a> · <a href="prop-firm-position-size-calculator.html">Position size calculator</a> · <a href="trailing-drawdown-calculator.html">Trailing drawdown calculator</a></p>
+  <p class="disclosure">Disclosure: some links on this site are affiliate links. If you buy through them I may earn a commission, at no extra cost to you. The calculators are free and need no sign-up.</p>
+  <div class="risk"><strong>Risk warning:</strong> trading futures, forex and CFDs carries a high risk of loss, and most evaluation attempts fail. This tool is a math helper, not a forecast and not financial advice. Rules differ by firm and change, so always check your firm's current rules.</div>
+</div></main>
+<footer class="site"><div class="wrap">
+  <div class="logo">Funded Ledger</div>
+  <p>Funded Ledger is reader-supported. Some links are affiliate links. Trading futures, forex and CFDs carries a high risk of loss. Past results, including mine, do not guarantee future results. Nothing here is financial advice.</p>
+  <p><a href="../about.html">About</a> · <a href="../methodology.html">How we rank firms</a> · <a href="../affiliate-disclosure.html">Affiliate disclosure</a></p>
+  <p>Contact: <a href="mailto:fundedledger@gmail.com">fundedledger@gmail.com</a></p>
+</div></footer>
+
+<script>
+(function () {
+  var I = [
+    ["MNQ", "Micro E-mini Nasdaq-100 (MNQ)", 2, 0.25],
+    ["NQ", "E-mini Nasdaq-100 (NQ)", 20, 0.25],
+    ["MES", "Micro E-mini S&P 500 (MES)", 5, 0.25],
+    ["ES", "E-mini S&P 500 (ES)", 50, 0.25],
+    ["MYM", "Micro E-mini Dow (MYM)", 0.5, 1],
+    ["YM", "E-mini Dow (YM)", 5, 1],
+    ["M2K", "Micro E-mini Russell 2000 (M2K)", 5, 0.1],
+    ["RTY", "E-mini Russell 2000 (RTY)", 50, 0.1],
+    ["MGC", "Micro Gold (MGC)", 10, 0.1],
+    ["GC", "Gold (GC)", 100, 0.1],
+    ["MCL", "Micro Crude Oil (MCL)", 100, 0.01],
+    ["CL", "Crude Oil (CL)", 1000, 0.01]
+  ];
+  var $ = function (id) { return document.getElementById(id); };
+  var money = function (n) { return "$" + n.toLocaleString("en-US", { maximumFractionDigits: 2 }); };
+  I.forEach(function (r, i) {
+    var o = document.createElement("option"); o.value = i; o.textContent = r[1]; $("inst").appendChild(o);
+    var tr = document.createElement("tr");
+    tr.innerHTML = "<td>" + r[0] + "</td><td>$" + r[2] + "</td><td>" + r[3] + "</td><td>$" + (r[2] * r[3]).toFixed(2) + "</td>";
+    $("pv").appendChild(tr);
+  });
+  function run() {
+    var r = I[+$("inst").value], risk = parseFloat($("risk").value), stop = parseFloat($("stop").value);
+    var max = parseInt($("max").value, 10), room = parseFloat($("room").value), err = $("err");
+    if (!(risk > 0) || !(stop > 0)) { err.hidden = false; err.textContent = "Enter a risk above $0 and a stop above 0 points."; return; }
+    err.hidden = true;
+    var per = stop * r[2], n = Math.floor(risk / per), capped = false;
+    if (max > 0 && n > max) { n = max; capped = true; }
+    $("r1").textContent = n;
+    $("r1").className = "v" + (n < 1 ? " bad" : "");
+    $("r1s").textContent = n < 1 ? "One contract risks " + money(per) + ", more than your " + money(risk) + ". Use a smaller contract or a tighter stop." : (money(per) + " risk per contract" + (capped ? "; capped by the firm limit" : ""));
+    var act = n * per;
+    $("r2").textContent = money(act); $("r2s").textContent = n + " × " + stop + " pts × $" + r[2] + " per point";
+    if (room > 0) { var share = act / room * 100; $("r3").textContent = share.toFixed(0) + "%"; $("r3").className = "v" + (share > 25 ? " bad" : ""); $("r3s").textContent = share > 25 ? "One stop takes over a quarter of your room. Consider less size." : "of " + money(room) + " room left"; }
+    else { $("r3").textContent = "–"; $("r3").className = "v"; $("r3s").textContent = "Add your room left to see this."; }
+  }
+  ["inst", "risk", "stop", "max", "room"].forEach(function (id) { $(id).addEventListener("input", run); });
+  run();
+})();
+</script>
+</body>
+</html>

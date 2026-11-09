@@ -1,0 +1,129 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Prop Firm Trailing Drawdown Calculator (Free)</title>
+<meta name="description" content="Free trailing drawdown calculator: enter balance, peak and drawdown size to see your breach level and room left for trailing, end-of-day trailing and static drawdown.">
+<meta property="og:title" content="Prop Firm Trailing Drawdown Calculator (Free)">
+<meta property="og:description" content="Free trailing drawdown calculator: enter balance, peak and drawdown size to see your breach level and room left for trailing, end-of-day trailing and static drawdown.">
+<meta property="og:type" content="article">
+<meta property="og:url" content="https://fundedxledger.com/tools/trailing-drawdown-calculator.html">
+<meta name="twitter:card" content="summary">
+<link rel="canonical" href="https://fundedxledger.com/tools/trailing-drawdown-calculator.html">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=JetBrains+Mono:wght@500;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="../style.css?v=5">
+<style>
+.calc { background: var(--surface); border: 1px solid var(--border); border-radius: var(--radius); padding: 18px 20px; margin: 20px 0; }
+.calc-grid { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 14px 16px; }
+@media (max-width: 640px) { .calc-grid { grid-template-columns: 1fr; } }
+.calc label { display: block; font-size: 12px; font-weight: 700; letter-spacing: .05em; text-transform: uppercase; color: var(--muted); margin-bottom: 5px; }
+.calc input, .calc select { width: 100%; background: var(--bg-2); color: var(--text); border: 1px solid var(--border-strong); border-radius: 8px; padding: 10px 12px; font: inherit; font-size: 16px; }
+.calc input:focus, .calc select:focus { outline: 2px solid var(--accent); outline-offset: 1px; }
+.calc .hint { font-size: 13px; color: var(--muted); margin: 5px 0 0; }
+.calc .full { grid-column: 1 / -1; }
+.result { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 12px; margin: 20px 0; }
+@media (max-width: 640px) { .result { grid-template-columns: 1fr; } }
+.result div.box { background: var(--surface); border: 1px solid var(--border); border-radius: var(--radius); padding: 14px 16px; }
+.result .k { font-size: 11.5px; font-weight: 700; letter-spacing: .06em; text-transform: uppercase; color: var(--muted); }
+.result .v { font-family: "JetBrains Mono", monospace; font-size: 26px; font-weight: 700; color: var(--accent); margin-top: 4px; }
+.result .v.bad { color: var(--warn); }
+.result .s { font-size: 13px; color: var(--text-2); margin-top: 4px; }
+.calc-error { color: var(--warn); font-weight: 600; margin: 12px 0; }
+</style>
+</head>
+<body>
+<header class="site"><div class="wrap">
+  <a class="logo" href="../index.html">Funded Ledger</a>
+  <nav>
+    <a href="../index.html">Best prop firms</a>
+    <a href="../compare/index.html">Reviews &amp; comparisons</a>
+    <a href="../deals.html">Deals</a>
+    <a href="../guides/index.html">Guides</a>
+  </nav>
+</div></header>
+<main><div class="wrap">
+  <section class="hero">
+    <span class="eyebrow">Tool · drawdown</span>
+    <h1>Prop Firm Trailing Drawdown Calculator</h1>
+    <p class="lede">See where your breach level is and how much room you have left. Works for trailing, end-of-day trailing and static drawdown, with an option for the lock many firms use.</p>
+    <div class="byline"><span class="chip">Free, no sign-up</span><span class="chip">Runs in your browser</span><span class="chip">Checked November 2026</span></div>
+  </section>
+
+  <h2 id="calculator">Find your breach level</h2>
+  <form class="calc" id="calc" onsubmit="return false">
+    <div class="calc-grid">
+      <div><label for="type">Drawdown type</label><select id="type">
+        <option value="trail">Trailing (follows your highest equity, including open profit)</option>
+        <option value="eod">Trailing end-of-day (follows your highest closing balance)</option>
+        <option value="static">Static (fixed from the start)</option></select></div>
+      <div><label for="start">Starting balance ($)</label><input id="start" type="number" inputmode="decimal" min="1" step="any" value="50000"></div>
+      <div><label for="dd">Max drawdown ($)</label><input id="dd" type="number" inputmode="decimal" min="1" step="any" value="2500"></div>
+      <div><label for="peak">Highest level so far ($)</label><input id="peak" type="number" inputmode="decimal" min="1" step="any" value="51500">
+        <p class="hint">Trailing: your highest equity. End-of-day: your highest closing balance. Ignored for static.</p></div>
+      <div><label for="cur">Current balance or equity ($)</label><input id="cur" type="number" inputmode="decimal" min="1" step="any" value="51000"></div>
+      <div><label for="lock">Trail locks at starting balance</label><select id="lock"><option value="yes">Yes: floor stops rising once it reaches the starting balance</option><option value="no">No: it keeps trailing</option></select>
+        <p class="hint">Many firms stop the trail at the starting balance. Check yours.</p></div>
+    </div>
+  </form>
+  <p class="calc-error" id="err" role="alert" hidden></p>
+  <div class="result" aria-live="polite">
+    <div class="box"><span class="k">Breach level</span><div class="v" id="r1">–</div><div class="s" id="r1s"></div></div>
+    <div class="box"><span class="k">Room left</span><div class="v" id="r2">–</div><div class="s" id="r2s"></div></div>
+    <div class="box"><span class="k">Status</span><div class="v" id="r3">–</div><div class="s" id="r3s"></div></div>
+  </div>
+
+  <h2 id="how">How the math works</h2>
+  <ol>
+    <li><strong>Static:</strong> breach level = starting balance − max drawdown. It never moves. $50,000 − $2,500 = $47,500.</li>
+    <li><strong>Trailing:</strong> breach level = highest level − max drawdown. It moves up when you set a new high and never moves down. $51,500 − $2,500 = $49,000.</li>
+    <li><strong>Trailing end-of-day:</strong> same idea, but the high only counts at the daily close, not intraday.</li>
+    <li><strong>Lock:</strong> if the firm stops the trail at the starting balance, the breach level never goes above it. In this example that is $50,000.</li>
+    <li><strong>Room left = current balance − breach level.</strong></li>
+  </ol>
+  <p>Exact rules differ. Some firms trail on equity including open trades, some on closed balance, some lock at the start balance, some at start plus a buffer. This tool uses the simple versions above, so confirm with your firm's rules before you size a trade. Not sure which type you have? Read <a href="../guides/trailing-vs-end-of-day-drawdown.html">trailing vs end-of-day drawdown</a>, then size your trade with the <a href="prop-firm-position-size-calculator.html">position size calculator</a>.</p>
+  <p>Drawdown rules are one of the biggest reasons accounts fail, so compare them before you buy: see <a href="../deals.html">prop firm deals</a> and <a href="../guides/prop-firm-rules-cheat-sheet.html">the rules cheat sheet</a>.</p>
+
+  <p>More free tools: <a href="prop-firm-cost-calculator.html">Prop firm cost calculator</a> · <a href="consistency-rule-calculator.html">Consistency rule calculator</a> · <a href="prop-firm-position-size-calculator.html">Position size calculator</a> · <a href="trailing-drawdown-calculator.html">Trailing drawdown calculator</a></p>
+  <p class="disclosure">Disclosure: some links on this site are affiliate links. If you buy through them I may earn a commission, at no extra cost to you. The calculators are free and need no sign-up.</p>
+  <div class="risk"><strong>Risk warning:</strong> trading futures, forex and CFDs carries a high risk of loss, and most evaluation attempts fail. This tool is a math helper, not a forecast and not financial advice. Rules differ by firm and change, so always check your firm's current rules.</div>
+</div></main>
+<footer class="site"><div class="wrap">
+  <div class="logo">Funded Ledger</div>
+  <p>Funded Ledger is reader-supported. Some links are affiliate links. Trading futures, forex and CFDs carries a high risk of loss. Past results, including mine, do not guarantee future results. Nothing here is financial advice.</p>
+  <p><a href="../about.html">About</a> · <a href="../methodology.html">How we rank firms</a> · <a href="../affiliate-disclosure.html">Affiliate disclosure</a></p>
+  <p>Contact: <a href="mailto:fundedledger@gmail.com">fundedledger@gmail.com</a></p>
+</div></footer>
+
+<script>
+(function () {
+  var $ = function (id) { return document.getElementById(id); };
+  var money = function (n) { return "$" + n.toLocaleString("en-US", { maximumFractionDigits: 2 }); };
+  function run() {
+    var t = $("type").value, s = parseFloat($("start").value), dd = parseFloat($("dd").value), pk = parseFloat($("peak").value), cur = parseFloat($("cur").value), err = $("err");
+    $("peak").disabled = t === "static"; $("lock").disabled = t === "static";
+    if (!(s > 0) || !(dd > 0) || !(cur > 0) || (t !== "static" && !(pk > 0))) { err.hidden = false; err.textContent = "Fill in the starting balance, max drawdown, current balance and highest level."; return; }
+    err.hidden = true;
+    var floor;
+    if (t === "static") floor = s - dd;
+    else {
+      var hi = Math.max(pk, s);
+      floor = hi - dd;
+      if ($("lock").value === "yes") floor = Math.min(floor, s);
+    }
+    var room = cur - floor;
+    $("r1").textContent = money(floor);
+    $("r1s").textContent = t === "static" ? "Fixed: start minus drawdown" : ($("lock").value === "yes" && floor === s ? "Locked at the starting balance" : "Highest level minus drawdown");
+    $("r2").textContent = money(room); $("r2").className = "v" + (room <= 0 ? " bad" : "");
+    $("r2s").textContent = room > 0 ? ((room / dd * 100).toFixed(0) + "% of one full drawdown") : "At or below the breach level";
+    $("r3").textContent = room <= 0 ? "Breached" : (room < dd * 0.25 ? "Danger" : "OK"); $("r3").className = "v" + (room < dd * 0.25 ? " bad" : "");
+    $("r3s").textContent = room <= 0 ? "This balance is at or below the breach level." : (room < dd * 0.25 ? "Under 25% of your drawdown is left. Size down." : "Plenty of room, but size by your stop, not by your room.");
+  }
+  ["type", "start", "dd", "peak", "cur", "lock"].forEach(function (id) { $(id).addEventListener("input", run); });
+  run();
+})();
+</script>
+</body>
+</html>

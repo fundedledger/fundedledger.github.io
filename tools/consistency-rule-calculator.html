@@ -1,0 +1,115 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Prop Firm Consistency Rule Calculator (Free)</title>
+<meta name="description" content="Free consistency rule calculator: enter your total profit and best day to see if you pass a prop firm's best-day rule, and how much more profit you need.">
+<meta property="og:title" content="Prop Firm Consistency Rule Calculator (Free)">
+<meta property="og:description" content="Free consistency rule calculator: enter your total profit and best day to see if you pass a prop firm's best-day rule, and how much more profit you need.">
+<meta property="og:type" content="article">
+<meta property="og:url" content="https://fundedxledger.com/tools/consistency-rule-calculator.html">
+<meta name="twitter:card" content="summary">
+<link rel="canonical" href="https://fundedxledger.com/tools/consistency-rule-calculator.html">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=JetBrains+Mono:wght@500;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="../style.css?v=5">
+<style>
+.calc { background: var(--surface); border: 1px solid var(--border); border-radius: var(--radius); padding: 18px 20px; margin: 20px 0; }
+.calc-grid { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 14px 16px; }
+@media (max-width: 640px) { .calc-grid { grid-template-columns: 1fr; } }
+.calc label { display: block; font-size: 12px; font-weight: 700; letter-spacing: .05em; text-transform: uppercase; color: var(--muted); margin-bottom: 5px; }
+.calc input, .calc select { width: 100%; background: var(--bg-2); color: var(--text); border: 1px solid var(--border-strong); border-radius: 8px; padding: 10px 12px; font: inherit; font-size: 16px; }
+.calc input:focus, .calc select:focus { outline: 2px solid var(--accent); outline-offset: 1px; }
+.calc .hint { font-size: 13px; color: var(--muted); margin: 5px 0 0; }
+.calc .full { grid-column: 1 / -1; }
+.result { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 12px; margin: 20px 0; }
+@media (max-width: 640px) { .result { grid-template-columns: 1fr; } }
+.result div.box { background: var(--surface); border: 1px solid var(--border); border-radius: var(--radius); padding: 14px 16px; }
+.result .k { font-size: 11.5px; font-weight: 700; letter-spacing: .06em; text-transform: uppercase; color: var(--muted); }
+.result .v { font-family: "JetBrains Mono", monospace; font-size: 26px; font-weight: 700; color: var(--accent); margin-top: 4px; }
+.result .v.bad { color: var(--warn); }
+.result .s { font-size: 13px; color: var(--text-2); margin-top: 4px; }
+.calc-error { color: var(--warn); font-weight: 600; margin: 12px 0; }
+</style>
+</head>
+<body>
+<header class="site"><div class="wrap">
+  <a class="logo" href="../index.html">Funded Ledger</a>
+  <nav>
+    <a href="../index.html">Best prop firms</a>
+    <a href="../compare/index.html">Reviews &amp; comparisons</a>
+    <a href="../deals.html">Deals</a>
+    <a href="../guides/index.html">Guides</a>
+  </nav>
+</div></header>
+<main><div class="wrap">
+  <section class="hero">
+    <span class="eyebrow">Tool · consistency</span>
+    <h1>Prop Firm Consistency Rule Calculator</h1>
+    <p class="lede">Many firms cap how much of your total profit one day can make. Enter your numbers and see if you pass, and how much more profit it would take if you don't.</p>
+    <div class="byline"><span class="chip">Free, no sign-up</span><span class="chip">Runs in your browser</span><span class="chip">Checked November 2026</span></div>
+  </section>
+
+  <h2 id="calculator">Check your best-day share</h2>
+  <form class="calc" id="calc" onsubmit="return false">
+    <div class="calc-grid">
+      <div><label for="total">Total profit so far ($)</label><input id="total" type="number" inputmode="decimal" min="0" step="any" value="4000"></div>
+      <div><label for="best">Best single day ($)</label><input id="best" type="number" inputmode="decimal" min="0" step="any" value="1500"></div>
+      <div class="full"><label for="pct">Best day limit (% of total profit)</label><input id="pct" type="number" inputmode="decimal" min="1" max="100" step="any" value="40">
+        <p class="hint">Use the number from your firm's rules. Common limits are around 30% to 50%, but check your firm: the exact number and how it is measured differ.</p></div>
+    </div>
+  </form>
+  <p class="calc-error" id="err" role="alert" hidden></p>
+  <div class="result" aria-live="polite">
+    <div class="box"><span class="k">Best day share</span><div class="v" id="r1">–</div><div class="s" id="r1s"></div></div>
+    <div class="box"><span class="k">Result</span><div class="v" id="r2">–</div><div class="s" id="r2s"></div></div>
+    <div class="box"><span class="k">Total profit needed</span><div class="v" id="r3">–</div><div class="s" id="r3s"></div></div>
+  </div>
+
+  <h2 id="how">How the math works</h2>
+  <ol>
+    <li><strong>Best day share = best day ÷ total profit.</strong> $1,500 ÷ $4,000 = 37.5%.</li>
+    <li><strong>You pass if the share is at or under the limit.</strong> At a 40% limit, 37.5% passes.</li>
+    <li><strong>Profit needed = best day ÷ limit.</strong> $1,500 ÷ 0.40 = $3,750 total, so any total at or above that passes with the same best day.</li>
+    <li><strong>Biggest best day allowed = total × limit.</strong> On $4,000 that is $1,600.</li>
+  </ol>
+  <p>Firms word this differently. Some measure against total profit, some against profit since the last payout, some use different percentages for different account types, and some firms have no consistency rule at all. This calculator uses the simple version above. Your firm's own rule page is the one that counts. To see how the rule works in plain English, read <a href="../guides/prop-firm-rules-cheat-sheet.html">the prop firm rules cheat sheet</a> and <a href="../how-prop-firm-challenges-work.html">how challenges work</a>.</p>
+  <h2 id="fix">If you fail it</h2>
+  <p>The usual fix is to keep trading with normal size until the total grows, not to chase a bigger number. Raising total profit with the same best day lowers your share. Trading bigger to do it can break other rules, like the daily loss limit or drawdown. If you want to compare how firms treat this rule, see <a href="../deals.html">our prop firm deals and reviews</a>.</p>
+
+  <p>More free tools: <a href="prop-firm-cost-calculator.html">Prop firm cost calculator</a> · <a href="consistency-rule-calculator.html">Consistency rule calculator</a> · <a href="prop-firm-position-size-calculator.html">Position size calculator</a> · <a href="trailing-drawdown-calculator.html">Trailing drawdown calculator</a></p>
+  <p class="disclosure">Disclosure: some links on this site are affiliate links. If you buy through them I may earn a commission, at no extra cost to you. The calculators are free and need no sign-up.</p>
+  <div class="risk"><strong>Risk warning:</strong> trading futures, forex and CFDs carries a high risk of loss, and most evaluation attempts fail. This tool is a math helper, not a forecast and not financial advice. Rules differ by firm and change, so always check your firm's current rules.</div>
+</div></main>
+<footer class="site"><div class="wrap">
+  <div class="logo">Funded Ledger</div>
+  <p>Funded Ledger is reader-supported. Some links are affiliate links. Trading futures, forex and CFDs carries a high risk of loss. Past results, including mine, do not guarantee future results. Nothing here is financial advice.</p>
+  <p><a href="../about.html">About</a> · <a href="../methodology.html">How we rank firms</a> · <a href="../affiliate-disclosure.html">Affiliate disclosure</a></p>
+  <p>Contact: <a href="mailto:fundedledger@gmail.com">fundedledger@gmail.com</a></p>
+</div></footer>
+
+<script>
+(function () {
+  var $ = function (id) { return document.getElementById(id); };
+  var money = function (n) { return "$" + n.toLocaleString("en-US", { maximumFractionDigits: 0 }); };
+  function run() {
+    var total = parseFloat($("total").value), best = parseFloat($("best").value), pct = parseFloat($("pct").value);
+    var err = $("err");
+    if (!(total > 0) || !(best >= 0) || !(pct > 0 && pct <= 100)) { err.hidden = false; err.textContent = "Enter a total profit above 0, a best day of 0 or more, and a limit between 1 and 100."; return; }
+    if (best > total) { err.hidden = false; err.textContent = "Your best day is bigger than your total profit. That can happen if other days lost money. The share is over 100%, so you cannot pass until total profit grows."; }
+    else err.hidden = true;
+    var share = best / total * 100, lim = pct / 100, need = best / lim, maxBest = total * lim, ok = share <= pct + 1e-9;
+    $("r1").textContent = share.toFixed(1) + "%"; $("r1s").textContent = money(best) + " of " + money(total);
+    $("r2").textContent = ok ? "Pass" : "Fail"; $("r2").className = "v" + (ok ? "" : " bad");
+    $("r2s").textContent = "Limit " + pct + "%. Biggest best day allowed on this total: " + money(maxBest) + ".";
+    $("r3").textContent = money(need);
+    $("r3s").textContent = ok ? "You are already above this." : "You need " + money(need - total) + " more total profit, with the same best day.";
+  }
+  ["total", "best", "pct"].forEach(function (id) { $(id).addEventListener("input", run); });
+  run();
+})();
+</script>
+</body>
+</html>
