@@ -16,6 +16,22 @@
 <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=JetBrains+Mono:wght@500;700&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="../style.css?v=5">
 <style>
+:root { --bg:#0b0f14; --bg-2:#0f151c; --surface:#131b24; --surface-2:#18222d; --border:#233040; --border-strong:#2f3f52; --text:#e8edf3; --text-2:#b4c0cc; --muted:#8494a5; --accent:#34d399; --accent-2:#22b8cf; --warn:#fbbf24; --bad:#fb7185; --radius:14px; color-scheme: dark; }
+body { background: var(--bg); color: var(--text); }
+.calc { position: relative; overflow: hidden; background: linear-gradient(180deg, var(--surface-2), var(--surface)) !important; box-shadow: 0 8px 30px rgba(0,0,0,.35); padding: 24px 24px 20px !important; }
+.calc::before { content: ""; position: absolute; left: 0; right: 0; top: 0; height: 3px; background: linear-gradient(90deg, var(--accent), var(--accent-2)); }
+.result div.box { border-top: 3px solid var(--accent) !important; background: linear-gradient(180deg, var(--surface-2), var(--surface)) !important; }
+.result div.box:nth-child(2) { border-top-color: var(--accent-2) !important; }
+.result div.box:nth-child(3) { border-top-color: var(--warn) !important; }
+.viz { background: var(--surface); border: 1px solid var(--border); border-radius: var(--radius); padding: 16px 18px 12px; margin: 0 0 20px; }
+.viz .t { font-size: 11.5px; font-weight: 700; letter-spacing: .06em; text-transform: uppercase; color: var(--muted); margin-bottom: 10px; }
+.meter { position: relative; height: 16px; border-radius: 99px; background: var(--bg-2); border: 1px solid var(--border-strong); overflow: visible; }
+.meter i { display: block; height: 100%; width: 0; border-radius: 99px; background: linear-gradient(90deg, var(--accent), var(--accent-2)); transition: width .35s ease, background .2s; }
+.meter i.bad { background: linear-gradient(90deg, #fb7185, #f59e0b); }
+.meter b { position: absolute; top: -5px; width: 2px; height: 24px; background: var(--text); border-radius: 2px; opacity: .85; }
+.viz-l { display: flex; justify-content: space-between; gap: 12px; font-size: 13px; color: var(--text-2); margin-top: 10px; }
+.calc button.preset { background: var(--bg-2); color: var(--text-2); border: 1px solid var(--border-strong); border-radius: 99px; padding: 5px 12px; font: inherit; font-size: 13px; cursor: pointer; margin: 0 6px 6px 0; }
+.calc button.preset:hover { border-color: var(--accent); color: var(--text); }
 .calc { background: var(--surface); border: 1px solid var(--border); border-radius: var(--radius); padding: 18px 20px; margin: 20px 0; }
 .calc-grid { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 14px 16px; }
 @media (max-width: 640px) { .calc-grid { grid-template-columns: 1fr; } }
@@ -72,6 +88,7 @@
     <div class="box"><span class="k">Actual risk if stopped</span><div class="v" id="r2">–</div><div class="s" id="r2s"></div></div>
     <div class="box"><span class="k">Share of drawdown room</span><div class="v" id="r3">–</div><div class="s" id="r3s"></div></div>
   </div>
+  <div class="viz"><div class="t">How much of your drawdown room one stop takes</div><div class="meter"><i id="bar"></i><b id="mark"></b></div><div class="viz-l"><span id="vl">0%</span><span id="vr">100% of room</span></div></div>
 
   <h2 id="how">How the math works</h2>
   <ol>
@@ -134,8 +151,8 @@
     $("r1s").textContent = n < 1 ? "One contract risks " + money(per) + ", more than your " + money(risk) + ". Use a smaller contract or a tighter stop." : (money(per) + " risk per contract" + (capped ? "; capped by the firm limit" : ""));
     var act = n * per;
     $("r2").textContent = money(act); $("r2s").textContent = n + " × " + stop + " pts × $" + r[2] + " per point";
-    if (room > 0) { var share = act / room * 100; $("r3").textContent = share.toFixed(0) + "%"; $("r3").className = "v" + (share > 25 ? " bad" : ""); $("r3s").textContent = share > 25 ? "One stop takes over a quarter of your room. Consider less size." : "of " + money(room) + " room left"; }
-    else { $("r3").textContent = "–"; $("r3").className = "v"; $("r3s").textContent = "Add your room left to see this."; }
+    if (room > 0) { $("bar").style.width = Math.min(100, act / room * 100) + "%"; $("bar").className = act / room > .25 ? "bad" : ""; $("mark").style.left = "25%"; $("vl").textContent = "One stop: " + money(act); $("vr").textContent = "Line at 25% of room"; var share = act / room * 100; $("r3").textContent = share.toFixed(0) + "%"; $("r3").className = "v" + (share > 25 ? " bad" : ""); $("r3s").textContent = share > 25 ? "One stop takes over a quarter of your room. Consider less size." : "of " + money(room) + " room left"; }
+    else { $("bar").style.width = "0%"; $("vl").textContent = "Add your room left to fill this bar"; $("mark").style.left = "25%"; $("r3").textContent = "–"; $("r3").className = "v"; $("r3s").textContent = "Add your room left to see this."; }
   }
   ["inst", "risk", "stop", "max", "room"].forEach(function (id) { $(id).addEventListener("input", run); });
   run();
